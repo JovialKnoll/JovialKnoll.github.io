@@ -9,3 +9,9 @@
     <link rel="stylesheet" type="text/css" href="/general-style.css">
     <title>Welcome, Weary Traveler!</title>
 </head>
+
+<body>
+    <script src="./links.js"></script>
+
+</body>
+</html>
