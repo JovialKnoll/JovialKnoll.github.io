@@ -1,2 +1,2 @@
 # JovialKnoll.github.io
-website
+a personal website
