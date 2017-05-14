@@ -4,17 +4,24 @@ var pages = [
     { link: "/about", text: "About" }
 ];
 
-var sideNav = '<ul class="sidenav">';
+var topNav = '<ul class="topnav">';
 for (var i = 0; i < pages.length; ++i) {
     var page = pages[i];
-    sideNav += '<li><a href="';
-    sideNav += page.link === window.location.pathname
-        ? '#" class="active'
+    topNav += '<li><a href="';
+    topNav += page.link === window.location.pathname
+        ? '#'
         : ('.' + page.link)
         ;
-    sideNav += '">';
-    sideNav += page.text;
-    sideNav += '</a></li>';
+    topNav += '" class="toplink';
+    if (page.link === window.location.pathname) {
+        topNav += ' active'
+    }
+    if (i === pages.length - 1) {
+        topNav += ' right'
+    }
+    topNav += '">';
+    topNav += page.text;
+    topNav += '</a></li>';
 }
-sideNav += '</ul>';
-document.write(sideNav);
+topNav += '</ul>';
+document.write(topNav);
