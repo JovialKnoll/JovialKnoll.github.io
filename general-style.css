@@ -21,27 +21,24 @@ ul.topnav{
 }
 ul.topnav li {float: left;}
 ul.topnav li a{
-    padding: 1em 1em;
+    padding: 0em 0.5em;
     display: block;
     color: white;
     text-decoration: none;
     /*text-align: center;*/
 }
-ul.topnav li a:hover:not(.active) {background-color: #111;}
+ul.topnav li a:hover:not(.active) {background-color: #D31C3E;}
 ul.topnav li a.active {background-color: #E41339;}
 ul.topnav li.right {float: right;}
 @media screen and (max-width: 600px){
-    ul.topnav li.right, ul.topnav li {float: none;}
-    body{
-        max-width: none;
-    }
+    ul.topnav li.right,
+    ul.topnav li {float: none;}
+    body {max-width: none;}
 }
 
 /*print*/
 @media print{
-    body{
-        max-width: none;
-    }
+    body {max-width: none;}
 }
 
 /*
