@@ -15,11 +15,11 @@ ul.topnav{
     margin: 0;
     padding: 0;
     max-width: none;
-    width: 100%;
     list-style-type: none;
     overflow: hidden;
     background-color: black;
 }
+ul.topnav li {float: left;}
 ul.topnav li a{
     padding: 1em 1em;
     display: block;
