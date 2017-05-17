@@ -13,7 +13,7 @@ for (var i = 0; i < pages.length; ++i) {
     topNav += '><a href="';
     topNav += page.link === window.location.pathname
         ? '#" class="active'
-        : (page.link)
+        : page.link
         ;
     topNav += '">';
     topNav += page.text;
