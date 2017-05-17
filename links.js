@@ -11,7 +11,7 @@ for (var i = 0; i < pages.length; ++i) {
         topNav += ' class="right"';
     }
     topNav += '><a href="';
-    topNav += page.link === window.location.pathname
+    topNav += page.link === window.location.pathname.replace('.html', '')
         ? '#" class="active'
         : page.link
         ;
