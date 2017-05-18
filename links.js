@@ -3,7 +3,7 @@ var pages = [
     { link: "/roller", text: "Roller" },
     { link: "/about", text: "About" }
 ];
-var topNav = '<ul class="topnav">';
+var topNav = '<nav><ul class="topnav">';
 for (var i = 0; i < pages.length; ++i) {
     var page = pages[i];
     topNav += '<li';
@@ -19,5 +19,5 @@ for (var i = 0; i < pages.length; ++i) {
     topNav += page.text;
     topNav += '</a></li>';
 }
-topNav += '</ul>';
+topNav += '</ul></nav>';
 document.write(topNav);
