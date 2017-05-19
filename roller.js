@@ -5,7 +5,7 @@ function diceInput(text) {
     var cleanText = text
         .replace(/\s/g, '')
         .toLowerCase();
-    var valid = /^([0-9]*[d]?[0-9]+)([+-][0-9]*[d]?[0-9]+)*$/.match(cleanText);
+    var valid = /^([0-9]*[d]?[0-9]+)([+-][0-9]*[d]?[0-9]+)*$/.test(cleanText);
     button.disabled = !valid;
 }
 function getRoll(size) {
