@@ -2,7 +2,10 @@ var dice = document.getElementById('dice');
 var button = document.getElementById('button');
 var results = document.getElementById('results');
 function diceInput(text) {
-    var valid = True;
+    var cleanText = text
+        .replace(/\s/g, '')
+        .toLowerCase();
+    var valid = /^([0-9]*[d]?[0-9]+)([+-][0-9]*[d]?[0-9]+)*$/.match(cleanText);
     button.disabled = !valid;
 }
 function getRoll(size) {
