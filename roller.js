@@ -16,11 +16,10 @@ function rollDice() {
         if (input.indexOf('d') > -1) {
             var dieArray = input.split('d');
             var rollsLeft = 1;
-            var dieSize = parseInt(dieArray[0]);
-            if (dieArray.length > 1) {
+            if (dieArray[0].length > 0) {
                 rollsLeft = parseInt(dieArray[0]);
-                dieSize = parseInt(dieArray[1]);
             }
+            var dieSize = parseInt(dieArray[1]);
             while (rollsLeft > 0) {
                 result += getRoll(dieSize);
                 --rollsLeft;
