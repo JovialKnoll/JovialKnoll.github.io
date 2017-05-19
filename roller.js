@@ -28,6 +28,9 @@ function rollDice() {
             result += parseInt(input);
         }
     }
-    console.log(result);
+    var parentElement = document.getElementById('results');
+    var resultElement = document.createElement('div');
+    resultElement.innerHTML = result;
+    parentElement.insertBefore(resultElement, parentElement.firstChild);
 }
 document.getElementById('button').onclick = rollDice;
