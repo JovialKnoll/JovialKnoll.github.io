@@ -20,8 +20,8 @@
     <p>¯\_(ツ)_/¯</p>
     <form>
         <label for="dice">Dice Formula</label>
-        <input type="text" name="dice" id="dice">
-        <button type="button" id="button">Roll 'em</button>
+        <input type="text" name="dice" oninput="diceInput(this.value)" id="dice">
+        <button type="button" oninput="rollDice()" id="button">Roll 'em</button>
     </form>
     <div class="numbers" id="results">
         <div id="end"></div>
