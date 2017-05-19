@@ -1,8 +1,11 @@
+var dice = document.getElementById('dice');
+var button = document.getElementById('button');
+var results = document.getElementById('results');
 function getRoll(size) {
     return Math.floor(Math.random() * (size)) + 1;
 }
 function rollDice() {
-    var array = document.getElementById('dice')
+    var array = dice
         .value
         .replace(/\s/g, '')
         .toLowerCase()
@@ -29,9 +32,8 @@ function rollDice() {
             result += parseInt(input);
         }
     }
-    var parentElement = document.getElementById('results');
     var resultElement = document.createElement('div');
     resultElement.innerHTML = result;
-    parentElement.insertBefore(resultElement, parentElement.firstChild);
+    results.insertBefore(resultElement, results.firstChild);
 }
-document.getElementById('button').onclick = rollDice;
+button.onclick = rollDice;
