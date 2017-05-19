@@ -36,4 +36,3 @@ function rollDice() {
     resultElement.innerHTML = result;
     results.insertBefore(resultElement, results.firstChild);
 }
-button.onclick = rollDice;
