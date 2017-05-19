@@ -1,6 +1,10 @@
 var dice = document.getElementById('dice');
 var button = document.getElementById('button');
 var results = document.getElementById('results');
+function diceInput(text) {
+    var valid = True;
+    button.disabled = !valid;
+}
 function getRoll(size) {
     return Math.floor(Math.random() * (size)) + 1;
 }
