@@ -10,6 +10,7 @@ function rollDice() {
         .filter(function (input) {
             return input.length > 0;
         });
+    //handle negatives maybe...
     var result = 0;
     for (var i = 0; i < array.length; ++i) {
         var input = array[i];

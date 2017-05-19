@@ -16,12 +16,14 @@
 
     <h1>Rollin'</h1>
     <p>Type in a dice formula (e.g. 2d6 + d10 + 3) and click to roll.</p>
+    <p>Oops, negative numbers aren't handled correctly.</p>
+    <p>¯\_(ツ)_/¯</p>
     <form>
         <label for="dice">Dice Formula</label>
         <input type="text" name="dice" id="dice">
         <button type="button" id="button">Roll 'em</button>
     </form>
-    <div id="results">
+    <div class="numbers" id="results">
         <div id="end"></div>
     </div>
 </body>

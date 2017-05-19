@@ -40,6 +40,12 @@ ul.topnav li.right {float: right;}
     text-align: center;
 }
 
+/*roller*/
+.numbers{
+    text-align: center;
+    font: 15.0em/1.5 sans-serif;
+}
+
 /*print*/
 @media print{
     body {max-width: none;}
