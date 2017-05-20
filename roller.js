@@ -5,7 +5,7 @@ function diceInput(text) {
     var cleanText = text
         .replace(/\s/g, '')
         .toLowerCase();
-    var valid = /^([0-9]*[d]?[0-9]+)([+-][0-9]*[d]?[0-9]+)*$/.test(cleanText);
+    var valid = /^([-]?[0-9]*[d]?[0-9]+)([+-][0-9]*[d]?[0-9]+)*$/.test(cleanText);
     rollButton.disabled = !valid;
 }
 function getRoll(size) {
@@ -24,21 +24,19 @@ function handlePart(part) {
             partResult += getRoll(dieSize);
             --rollsLeft;
         }
-    } else {
+    } else if (part.length > 0){
         partResult = parseInt(input);
     }
     return partResult;
 }
 function rollDice() {
-    var array = dice
-        .value
+    var array = dice.value
         .replace(/\s/g, '')
         .toLowerCase()
         .split('+')
         .filter(function (input) {
             return input.length > 0;
         });
-    //handle negatives maybe...
     var result = 0;
     for (var i = 0; i < array.length; ++i) {
         var part = array[i];
