@@ -1,8 +1,8 @@
 var dice = document.getElementById('dice');
 var rollButton = document.getElementById('button');
 var results = document.getElementById('results');
-function diceInput(text) {
-    var cleanText = text
+function diceInput(textIn) {
+    var cleanText = textIn
         .replace(/\s/g, '')
         .toLowerCase();
     var valid = /^([-]?[0-9]*[d]?[0-9]+)([+-][0-9]*[d]?[0-9]+)*$/.test(cleanText);
