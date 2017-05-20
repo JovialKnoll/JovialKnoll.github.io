@@ -1,15 +1,33 @@
 var dice = document.getElementById('dice');
-var button = document.getElementById('button');
+var rollButton = document.getElementById('button');
 var results = document.getElementById('results');
 function diceInput(text) {
     var cleanText = text
         .replace(/\s/g, '')
         .toLowerCase();
     var valid = /^([0-9]*[d]?[0-9]+)([+-][0-9]*[d]?[0-9]+)*$/.test(cleanText);
-    button.disabled = !valid;
+    rollButton.disabled = !valid;
 }
 function getRoll(size) {
     return Math.floor(Math.random() * (size)) + 1;
+}
+function handlePart(part) {
+    var partResult = 0;
+    if (part.indexOf('d') > -1) {
+        var dieArray = part.split('d');
+        var rollsLeft = 1;
+        if (dieArray[0].length > 0) {
+            rollsLeft = parseInt(dieArray[0]);
+        }
+        var dieSize = parseInt(dieArray[1]);
+        while (rollsLeft > 0) {
+            partResult += getRoll(dieSize);
+            --rollsLeft;
+        }
+    } else {
+        partResult = parseInt(input);
+    }
+    return partResult;
 }
 function rollDice() {
     var array = dice
@@ -23,20 +41,11 @@ function rollDice() {
     //handle negatives maybe...
     var result = 0;
     for (var i = 0; i < array.length; ++i) {
-        var input = array[i];
-        if (input.indexOf('d') > -1) {
-            var dieArray = input.split('d');
-            var rollsLeft = 1;
-            if (dieArray[0].length > 0) {
-                rollsLeft = parseInt(dieArray[0]);
-            }
-            var dieSize = parseInt(dieArray[1]);
-            while (rollsLeft > 0) {
-                result += getRoll(dieSize);
-                --rollsLeft;
-            }
-        } else {
-            result += parseInt(input);
+        var part = array[i];
+        var parts = part.split('-');
+        result += handlePart(parts[0]);
+        for (var j = 1; j < parts.length; ++j) {
+            result -= handlePart(parts[j]);
         }
     }
     var resultElement = document.createElement('div');
