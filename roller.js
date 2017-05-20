@@ -25,7 +25,7 @@ function handlePart(part) {
             --rollsLeft;
         }
     } else if (part.length > 0){
-        partResult = parseInt(input);
+        partResult = parseInt(part);
     }
     return partResult;
 }
