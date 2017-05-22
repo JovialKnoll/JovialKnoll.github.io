@@ -1,0 +1,3 @@
+colors:
+red: #E41339
+dark red: #D31C3E

@@ -1,16 +1,18 @@
 /*basic stuff*/
-body{
+body, input, button {
     font: 1.25em/1.5 sans-serif;
+}
+body {
     margin: 2em auto;
     padding: 0 1em;
     max-width: 50em;
 }
-h1,h2,h3 {
+h1, h2, h3 {
     line-height: 1.5;
 }
 
 /*top navigation bar*/
-ul.topnav{
+ul.topnav {
     font: 2.0em/2.0 sans-serif;
     margin: 0;
     padding: 0;
@@ -19,40 +21,47 @@ ul.topnav{
     overflow: hidden;
     background-color: black;
 }
-ul.topnav li {float: left;}
-ul.topnav li a{
+ul.topnav li {
+    float: left;
+}
+ul.topnav li a {
     padding: 0em 0.5em;
     display: block;
     color: white;
     text-decoration: none;
 }
-ul.topnav li a:hover:not(.active) {background-color: #D31C3E;}
-ul.topnav li a.active {background-color: #E41339;}
-ul.topnav li.right {float: right;}
-@media screen and (max-width: 600px){
-    ul.topnav li.right,
-    ul.topnav li {float: none;}
-    body {max-width: none;}
+ul.topnav li a:hover:not(.active) {
+    background-color: #D31C3E;
+}
+ul.topnav li a.active {
+    background-color: #E41339;
+}
+ul.topnav li.right {
+    float: right;
+}
+@media screen and (max-width: 600px) {
+    ul.topnav li.right, ul.topnav li {
+        float: none;
+    }
+    body {
+        max-width: none;
+    }
 }
 
 /*404*/
-.four-oh-four{
+.four-oh-four {
     text-align: center;
 }
 
 /*roller*/
-.numbers{
+.numbers {
     text-align: center;
     font: 15.0em/1.5 sans-serif;
 }
 
 /*print*/
-@media print{
-    body {max-width: none;}
+@media print {
+    body {
+        max-width: none;
+    }
 }
-
-/*
-colors:
-red: #E41339
-dark red: #D31C3E
-*/
