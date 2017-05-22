@@ -9,7 +9,7 @@ function diceInput(textIn) {
     rollButton.disabled = !valid;
 }
 function getRoll(size) {
-    return Math.floor(Math.random() * (size)) + 1;
+    return Math.floor(Math.random() * size) + 1;
 }
 function handlePart(part) {
     var partResult = 0;
