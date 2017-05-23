@@ -11,12 +11,15 @@ h1, h2, h3 {
     line-height: 1.5;
 }
 button {
-    
+    background-color: black;
+    color: white;
+    border: none;
+    text-decoration: none;
 }
 
 /*top navigation bar*/
 ul.topnav {
-    font: 2.0em/2.0 sans-serif;
+    font: 2em/2 sans-serif;
     margin: 0;
     padding: 0;
     max-width: none;
@@ -58,7 +61,7 @@ ul.topnav li.right {
 
 /*roller*/
 .numbers {
-    font: 15.0em/1.25 sans-serif;
+    font: 15em/1.25 sans-serif;
 }
 
 /*print*/
