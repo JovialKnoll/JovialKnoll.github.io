@@ -22,6 +22,9 @@ button:disabled {
 button:enabled:hover {
     background-color: #D31C3E;
 }
+button:enabled:active {
+    background-color: #E41339;
+}
 
 /*top navigation bar*/
 ul.topnav {
@@ -45,7 +48,7 @@ ul.topnav li a {
 ul.topnav li a:hover:not(.active) {
     background-color: #D31C3E;
 }
-ul.topnav li a.active {
+ul.topnav li a.active, ul.topnav li a:active {
     background-color: #E41339;
 }
 ul.topnav li.right {
