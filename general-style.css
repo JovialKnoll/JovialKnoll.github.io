@@ -16,6 +16,12 @@ button {
     border: none;
     text-decoration: none;
 }
+button:disabled {
+    background-color: silver;
+}
+button:enabled:hover {
+    background-color: #D31C3E;
+}
 
 /*top navigation bar*/
 ul.topnav {
