@@ -1,7 +1,7 @@
 var pages = [
-    { link: "/", text: "Home" },
-    { link: "/roller", text: "Roller" },
-    { link: "/about", text: "About" }
+    { link: '/', text: "Home" },
+    { link: '/roller', text: "Roller" },
+    { link: '/about', text: "About" }
 ];
 var topNav = '<nav><ul class="topnav">';
 for (var i = 0; i < pages.length; ++i) {
