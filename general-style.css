@@ -10,6 +10,9 @@ body {
 h1, h2, h3 {
     line-height: 1.5;
 }
+button {
+    
+}
 
 /*top navigation bar*/
 ul.topnav {
@@ -48,15 +51,14 @@ ul.topnav li.right {
     }
 }
 
-/*404*/
-.four-oh-four {
+/*centered*/
+.four-oh-four, .numbers {
     text-align: center;
 }
 
 /*roller*/
 .numbers {
-    text-align: center;
-    font: 15.0em/1.5 sans-serif;
+    font: 15.0em/1.25 sans-serif;
 }
 
 /*print*/
