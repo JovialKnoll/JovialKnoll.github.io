@@ -1,7 +1,7 @@
 var pages = [
-    { link: '/', text: "Home" },
-    { link: '/roller', text: "Roller" },
-    { link: '/about', text: "About" }
+    { pageLink: '/', pageText: "Home" },
+    { pageLink: '/roller', pageText: "Roller" },
+    { pageLink: '/about', pageText: "About" }
 ];
 var topNav = '<nav><ul class="topnav">';
 for (var i = 0; i < pages.length; ++i) {
@@ -11,12 +11,12 @@ for (var i = 0; i < pages.length; ++i) {
         topNav += ' class="right"';
     }
     topNav += '><a href="';
-    topNav += page.link === window.location.pathname.replace('.html', '') && window.location.pathname !== '/.html'
+    topNav += page.pageLink === window.location.pathname.replace('.html', '') && window.location.pathname !== '/.html'
         ? '#" class="active'
-        : page.link
+        : page.pageLink
         ;
     topNav += '">';
-    topNav += page.text;
+    topNav += page.pageText;
     topNav += '</a></li>';
 }
 topNav += '</ul></nav>';
