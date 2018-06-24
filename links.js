@@ -1,5 +1,6 @@
 var pages = [
     { pageLink: '/', pageText: "Home" },
+    { pageLink: '/games', pageText: "Games" },
     { pageLink: '/roller', pageText: "Roller" },
     { pageLink: '/about', pageText: "About" }
 ];
