@@ -1,8 +1,7 @@
 // main loop
 function loop() {
-    updateArray();
     clearCanvas();
-    drawArray();
+    updateDrawArray();
 }
 function toggleRunning() {
     isRunning = !isRunning;
