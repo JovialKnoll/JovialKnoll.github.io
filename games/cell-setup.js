@@ -10,7 +10,7 @@ function clearCanvas() {
 }
 clearCanvas();
 // state setup
-var amountBlank = 0.666;
+var aliveChance = 0.666;
 var cellArray;
 function resetArray() {
     cellArray = new Array(size)
@@ -19,7 +19,7 @@ function resetArray() {
             return new Array(size)
                 .fill(0)
                 .map(function() {
-                    return Math.random() < amountBlank ? 0 : 1;
+                    return Math.random() < (1 - aliveChance) ? 0 : 1;
                 });
         });
 }

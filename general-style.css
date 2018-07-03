@@ -67,11 +67,19 @@ ul.topnav li.right {
 .four-oh-four, .numbers {
     text-align: center;
 }
+
+/*cells*/
 .cells .inputs {
     float: right;
 }
-.cells .inputs td {
-    padding:0.2em 1em 0.2em 1em;
+.cells .inputs table td {
+    padding:0.25em 2em 0.25em 0em;
+}
+.cells .inputs .section {
+    margin-bottom: 1em;
+}
+.cells .inputs .section .automata-text{
+    width: 8em;
 }
 
 /*roller*/

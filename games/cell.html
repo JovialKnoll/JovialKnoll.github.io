@@ -20,7 +20,7 @@
         <canvas id="canvas" width="512" height="512" style="border:1px solid #000000;">
         </canvas>
         <div class="inputs">
-            <div>
+            <div class="section">
                 <table>
                     <tr>
                         <th colspan="3">Born</th>
@@ -43,7 +43,7 @@
                     <tr>
                 </table>
             </div>
-            <div>
+            <div class="section">
                 <table>
                     <tr>
                         <th colspan="3">Survives</th>
@@ -65,7 +65,16 @@
                     </tr>
                 </table>
             </div>
-            <button type="button" onclick="toggleRunning()" id="button">Toggle Automata</button>
+            <div class="section">
+                <button type="button" onclick="toggleRunning()">Change Automata Rules</button>
+            </div>
+            <div class="section">
+                <button type="button" onclick="toggleRunning()">Toggle Automata</button>
+            </div>
+            <div class="section">
+                <button type="button" onclick="toggleRunning()">Reset Automata</button>
+                <input class="automata-text" type="text" name="alive-chance" oninput="aliveChanceInput(this.value)" value="0.666"/>
+            </div>
         </div>
     </div>
 </body>
