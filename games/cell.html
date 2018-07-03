@@ -66,15 +66,15 @@
                 </table>
             </div>
             <div class="section">
-                <button type="button" onclick="toggleRunning()">Set Automata Rules</button>
+                <button type="button" onclick="setRules()">Set Automata Rules</button>
             </div>
             <div class="section">
-                <button type="button" onclick="toggleRunning()">Set Time Per Update (ms)</button>
-                <input class="time-text" type="text" name="time" oninput="timeInput(this.value)" value="100"/>
+                <button type="button" onclick="setTime()">Set Update Time (ms)</button>
+                <input class="time-text" type="text" name="time" oninput="timeInput(this.value)" value="125"/>
             </div>
             <div class="section">
-                <button type="button" onclick="resetArray()">Reset Automata</button>
-                <input class="alive-chance-text" type="text" name="alive-chance" oninput="aliveChanceInput(this.value)" value="0.666"/>
+                <button type="button" onclick="resetAutomata()">Reset Automata</button>
+                <input class="alive-chance-text" type="text" name="alive-chance" oninput="aliveChanceInput(this.value)" value="0.125"/>
             </div>
             <div class="section">
                 <button type="button" onclick="toggleRunning()">Toggle Automata On/Off</button>

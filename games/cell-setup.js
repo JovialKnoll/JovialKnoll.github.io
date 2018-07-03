@@ -1,21 +1,27 @@
-// canvas setup
 var size = 256;
 var multi = 2;
 var colorSpeed = 8;
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
+var aliveChance = 0.125;
+var cellArray;
+var nextTime = 125;
+var time = nextTime;
+var born = [3];
+var survives = [2,3];
 function clearCanvas() {
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, size*multi, size*multi);
 }
 clearCanvas();
-// state setup
-var aliveChance = 0.666;
 function aliveChanceInput(newAliveChance) {
     // validation goes here
     aliveChance = newAliveChance;
 }
-var cellArray;
+function timeInput(newNextTime) {
+    // validation goes here
+    nextTime = newNextTime;
+}
 function resetArray() {
     cellArray = new Array(size)
         .fill(0)
@@ -28,9 +34,6 @@ function resetArray() {
         });
 }
 resetArray();
-var time = 100;
-var born = [3];
-var survives = [2,3];
 function getNeighbor(i, j) {
     return cellArray[(i + size) % size][(j + size) % size] > 0 ? 1 : 0;
 }

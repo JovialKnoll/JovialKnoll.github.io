@@ -1,5 +1,5 @@
 var isRunning = false;
-// main loop
+var time = nextTime;
 function loop() {
     clearCanvas();
     updateDrawArray();
@@ -13,6 +13,17 @@ function toggleRunning() {
         clearInterval(interval);
     }
 }
-// start
 toggleRunning();
-// interaction setup
+function resetAutomata() {
+    resetArray();
+    loop();
+}
+function setTime() {
+    time = nextTime;
+    if (isRunning) {
+        toggleRunning();
+        toggleRunning();
+    }
+}
+function setRules() {
+}

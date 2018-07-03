@@ -82,10 +82,10 @@ ul.topnav li.right {
     margin-bottom: 0.25em;
 }
 .cells .inputs .section .time-text{
-    width: 3em;
+    width: 4em;
 }
 .cells .inputs .section .alive-chance-text{
-    width: 8em;
+    width: 4em;
 }
 
 /*roller*/
