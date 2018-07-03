@@ -1,18 +1,20 @@
 // state
 var size = 256;
 var multi = 2;
-var smallest = -12;
-var deadSpeed = 4;
+var deadBright = 48;
+var deadSteps = 6;
+var smallest = deadSteps * -1;
+var deadSpeed = deadBright / deadSteps;
 var redSpeed = 4;
 var blueSpeed = 2;
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
-var aliveChance = 0.125;
-var cellArray;
-var nextTime = 125;
+var aliveChance = 0.0625;
+var nextTime = 500;
 var time = nextTime;
 var born = [];
 var survives = [];
+var cellArray;
 // make it work
 function clearCanvas() {
     ctx.fillStyle = 'black';
@@ -43,13 +45,14 @@ function getNeighbor(i, j) {
     return cellArray[(i + size) % size][(j + size) % size] > 0 ? 1 : 0;
 }
 function getNewValue(i, j) {
-    var neighbors = 0;
-    for (var di = -1;di < 2;++di) {
-        neighbors += getNeighbor(i + di, j - 1);
-        neighbors += getNeighbor(i + di, j + 1);
-    }
-    neighbors += getNeighbor(i - 1, j);
-    neighbors += getNeighbor(i + 1, j);
+    var neighbors = getNeighbor(i - 1, j - 1)
+        + getNeighbor(i, j - 1)
+        + getNeighbor(i + 1, j - 1)
+        + getNeighbor(i - 1, j)
+        + getNeighbor(i + 1, j)
+        + getNeighbor(i - 1, j + 1)
+        + getNeighbor(i, j + 1)
+        + getNeighbor(i + 1, j + 1);
     currentValue = cellArray[i][j];
     return currentValue > 0
         ? (survives.includes(neighbors) ? Math.min(1024, currentValue + 1) : 0)
@@ -58,7 +61,7 @@ function getNewValue(i, j) {
 }
 function getColor(val) {
     if (val < 1) {
-        var c = Math.max(0, 48 + val * deadSpeed).toString();
+        var c = Math.max(0, deadBright + val * deadSpeed).toString();
         return "rgb(" + c + "," + c + "," + c + ")";
     }
     var r = Math.max(0, 255 + redSpeed - val * redSpeed).toString();
@@ -85,7 +88,6 @@ function updateDrawArray() {
 }
 // looping and input
 var isRunning = false;
-var time = nextTime;
 function loop() {
     clearCanvas();
     updateDrawArray();
@@ -106,6 +108,7 @@ function setTime() {
         toggleRunning();
     }
 }
+setTime();
 function setRules() {
     born = [];
     survives = [];
