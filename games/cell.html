@@ -16,7 +16,57 @@
     <script src="../links.js"></script>
 
     <h1>Cellular Automata Widget</h1>
-    <canvas id="canvas" width="512" height="512" style="border:1px solid #000000;">
-    </canvas>
+    <div class="cells">
+        <canvas id="canvas" width="512" height="512" style="border:1px solid #000000;">
+        </canvas>
+        <div class="inputs">
+            <div>
+                <table>
+                    <tr>
+                        <th colspan="3">Born</th>
+                    </tr>
+                    <tr>
+                        <td><label><input id="b0" type="checkbox" name="checkbox-b0">0</label></td>
+                        <td><label><input id="b1" type="checkbox" name="checkbox-b1">1</label></td>
+                        <td><label><input id="b2" type="checkbox" name="checkbox-b2">2</label></td>
+                    </tr>
+                    <tr>
+                        <td><label><input id="b3" type="checkbox" name="checkbox-b3" checked>3</label></td>
+                        <td><label><input id="b4" type="checkbox" name="checkbox-b4">4</label></td>
+                        <td><label><input id="b5" type="checkbox" name="checkbox-b5">5</label></td>
+                    </tr>
+                    <tr>
+                        <td><label><input id="b6" type="checkbox" name="checkbox-b6">6</label></td>
+                        <td><label><input id="b7" type="checkbox" name="checkbox-b7">7</label></td>
+                        <td><label><input id="b8" type="checkbox" name="checkbox-b8">8</label></td>
+                    </tr>
+                    <tr>
+                </table>
+            </div>
+            <div>
+                <table>
+                    <tr>
+                        <th colspan="3">Survives</th>
+                    </tr>
+                    <tr>
+                        <td><label><input id="s0" type="checkbox" name="checkbox-s0">0</label></td>
+                        <td><label><input id="s1" type="checkbox" name="checkbox-s1">1</label></td>
+                        <td><label><input id="s2" type="checkbox" name="checkbox-s2" checked>2</label></td>
+                    </tr>
+                    <tr>
+                        <td><label><input id="s3" type="checkbox" name="checkbox-s3" checked>3</label></td>
+                        <td><label><input id="s4" type="checkbox" name="checkbox-s4">4</label></td>
+                        <td><label><input id="s5" type="checkbox" name="checkbox-s5">5</label></td>
+                    </tr>
+                    <tr>
+                        <td><label><input id="s6" type="checkbox" name="checkbox-s6">6</label></td>
+                        <td><label><input id="s7" type="checkbox" name="checkbox-s7">7</label></td>
+                        <td><label><input id="s8" type="checkbox" name="checkbox-s8">8</label></td>
+                    </tr>
+                </table>
+            </div>
+            <button type="button" onclick="toggleRunning()" id="button">Toggle Automata</button>
+        </div>
+    </div>
 </body>
 </html>

@@ -67,6 +67,12 @@ ul.topnav li.right {
 .four-oh-four, .numbers {
     text-align: center;
 }
+.cells .inputs {
+    float: right;
+}
+.cells .inputs td {
+    padding:0.2em 1em 0.2em 1em;
+}
 
 /*roller*/
 .numbers {

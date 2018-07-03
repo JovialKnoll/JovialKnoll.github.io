@@ -1,10 +1,12 @@
 // canvas setup
 var size = 256;
+var multi = 2;
+var colorSpeed = 8;
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 function clearCanvas() {
     ctx.fillStyle = 'black';
-    ctx.fillRect(0, 0, size*2, size*2);
+    ctx.fillRect(0, 0, size*multi, size*multi);
 }
 clearCanvas();
 // state setup
@@ -25,7 +27,6 @@ resetArray();
 var time = 50;
 var born = [3];
 var survives = [2,3];
-var isRunning = false;
 function getNeighbor(i, j) {
     return cellArray[(i + size) % size][(j + size) % size] > 0 ? 1 : 0;
 }
@@ -53,11 +54,11 @@ function updateDrawArray() {
             var val = cellArray[i][j];
             if (val > 0) {
                 ctx.fillStyle = "rgb("
-                    + Math.max(0, 255 + 8 - val * 8).toString()
+                    + Math.max(0, 255 + colorSpeed - val * colorSpeed).toString()
                     + ",0,"
-                    + Math.min(255, - 8 + val * 8).toString()
+                    + Math.min(255, - colorSpeed + val * colorSpeed).toString()
                     + ")";
-                ctx.fillRect(i*2, j*2, 2, 2);
+                ctx.fillRect(i*multi, j*multi, multi, multi);
             }
         }
         newArray.push(newColumn);

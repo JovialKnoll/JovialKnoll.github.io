@@ -1,3 +1,4 @@
+var isRunning = false;
 // main loop
 function loop() {
     clearCanvas();
