@@ -1,6 +1,7 @@
+// state
 var size = 256;
 var multi = 2;
-var colorSpeed = 8;
+var colorSpeed = 4;
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 var aliveChance = 0.125;
@@ -9,6 +10,7 @@ var nextTime = 125;
 var time = nextTime;
 var born = [3];
 var survives = [2,3];
+// make it work
 function clearCanvas() {
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, size*multi, size*multi);
@@ -71,4 +73,48 @@ function updateDrawArray() {
         newArray.push(newColumn);
     }
     cellArray = newArray;
+}
+// looping and input
+var isRunning = false;
+var time = nextTime;
+function loop() {
+    clearCanvas();
+    updateDrawArray();
+}
+function toggleRunning() {
+    isRunning = !isRunning;
+    if (isRunning) {
+        interval = setInterval(loop, time);
+    }
+    else {
+        clearInterval(interval);
+    }
+}
+toggleRunning();
+
+function setTime() {
+    time = nextTime;
+    if (isRunning) {
+        toggleRunning();
+        toggleRunning();
+    }
+}
+function setRules() {
+    born = [];
+    survives = [];
+    for (var n = 0;n < 9;++n) {
+        var bElement = document.getElementById('b' + n.toString());
+        if (bElement.checked) {
+            born.push(n);
+        }
+        var sElement = document.getElementById('s' + n.toString());
+        if (sElement.checked) {
+            survives.push(n);
+        }
+    }
+}
+function resetAutomata() {
+    setRules();
+    resetArray();
+    loop();
 }
