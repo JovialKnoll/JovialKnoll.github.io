@@ -11,6 +11,10 @@ function clearCanvas() {
 clearCanvas();
 // state setup
 var aliveChance = 0.666;
+function aliveChanceInput(newAliveChance) {
+    // validation goes here
+    aliveChance = newAliveChance;
+}
 var cellArray;
 function resetArray() {
     cellArray = new Array(size)
@@ -24,7 +28,7 @@ function resetArray() {
         });
 }
 resetArray();
-var time = 50;
+var time = 100;
 var born = [3];
 var survives = [2,3];
 function getNeighbor(i, j) {

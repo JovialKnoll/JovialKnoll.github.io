@@ -72,13 +72,19 @@ ul.topnav li.right {
 .cells .inputs {
     float: right;
 }
+.cells .inputs table th {
+    padding:0em 2.5em 0em 0em;
+}
 .cells .inputs table td {
-    padding:0.25em 2em 0.25em 0em;
+    padding:0em 2em 0.25em 0em;
 }
 .cells .inputs .section {
-    margin-bottom: 1em;
+    margin-bottom: 0.25em;
 }
-.cells .inputs .section .automata-text{
+.cells .inputs .section .time-text{
+    width: 3em;
+}
+.cells .inputs .section .alive-chance-text{
     width: 8em;
 }
 
