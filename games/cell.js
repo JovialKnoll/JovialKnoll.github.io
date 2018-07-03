@@ -1,15 +1,18 @@
 // state
 var size = 256;
 var multi = 2;
-var colorSpeed = 4;
+var smallest = -12;
+var deadSpeed = 4;
+var redSpeed = 4;
+var blueSpeed = 2;
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 var aliveChance = 0.125;
 var cellArray;
 var nextTime = 125;
 var time = nextTime;
-var born = [3];
-var survives = [2,3];
+var born = [];
+var survives = [];
 // make it work
 function clearCanvas() {
     ctx.fillStyle = 'black';
@@ -31,7 +34,7 @@ function resetArray() {
             return new Array(size)
                 .fill(0)
                 .map(function() {
-                    return Math.random() < (1 - aliveChance) ? 0 : 1;
+                    return Math.random() < (1 - aliveChance) ? smallest : 1;
                 });
         });
 }
@@ -47,10 +50,20 @@ function getNewValue(i, j) {
     }
     neighbors += getNeighbor(i - 1, j);
     neighbors += getNeighbor(i + 1, j);
-    return cellArray[i][j] > 0
-        ? (survives.includes(neighbors) ? cellArray[i][j] + 1 : 0)
-        : (born.includes(neighbors) ? 1 : 0)
+    currentValue = cellArray[i][j];
+    return currentValue > 0
+        ? (survives.includes(neighbors) ? Math.min(1024, currentValue + 1) : 0)
+        : (born.includes(neighbors) ? 1 : Math.max(smallest, currentValue - 1))
         ;
+}
+function getColor(val) {
+    if (val < 1) {
+        var c = Math.max(0, 48 + val * deadSpeed).toString();
+        return "rgb(" + c + "," + c + "," + c + ")";
+    }
+    var r = Math.max(0, 255 + redSpeed - val * redSpeed).toString();
+    var b = Math.min(255, - blueSpeed + val * blueSpeed).toString();
+    return "rgb(" + r + ",0," + b + ")";
 }
 function updateDrawArray() {
     var newArray = [];
@@ -61,12 +74,8 @@ function updateDrawArray() {
         {
             newColumn.push(getNewValue(i, j));
             var val = cellArray[i][j];
-            if (val > 0) {
-                ctx.fillStyle = "rgb("
-                    + Math.max(0, 255 + colorSpeed - val * colorSpeed).toString()
-                    + ",0,"
-                    + Math.min(255, - colorSpeed + val * colorSpeed).toString()
-                    + ")";
+            if (val > smallest) {
+                ctx.fillStyle = getColor(val);
                 ctx.fillRect(i*multi, j*multi, multi, multi);
             }
         }
@@ -90,8 +99,6 @@ function toggleRunning() {
         clearInterval(interval);
     }
 }
-toggleRunning();
-
 function setTime() {
     time = nextTime;
     if (isRunning) {
@@ -113,8 +120,10 @@ function setRules() {
         }
     }
 }
+setRules();
 function resetAutomata() {
     setRules();
     resetArray();
     loop();
 }
+toggleRunning();
