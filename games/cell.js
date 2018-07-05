@@ -3,7 +3,6 @@ var size = 256;
 var multi = 2;
 var deadBright = 48;
 var deadSteps = 6;
-var smallest = deadSteps * -1;
 var deadSpeed = deadBright / deadSteps;
 var redSpeed = 4;
 var blueSpeed = 2;
@@ -17,6 +16,7 @@ var survives = [];
 var cellArray;
 // make it work
 function clearCanvas() {
+    // make this be transparent
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, size*multi, size*multi);
 }
@@ -36,7 +36,7 @@ function resetArray() {
             return new Array(size)
                 .fill(0)
                 .map(function() {
-                    return Math.random() < (1 - aliveChance) ? smallest : 1;
+                    return Math.random() < (1 - aliveChance) ? 0 : 1;
                 });
         });
 }
@@ -56,17 +56,14 @@ function getNewValue(i, j) {
     currentValue = cellArray[i][j];
     return currentValue > 0
         ? (survives.includes(neighbors) ? Math.min(1024, currentValue + 1) : 0)
-        : (born.includes(neighbors) ? 1 : Math.max(smallest, currentValue - 1))
+        : (born.includes(neighbors) ? 1 : 0)
         ;
 }
 function getColor(val) {
-    if (val < 1) {
-        var c = Math.max(0, deadBright + val * deadSpeed).toString();
-        return "rgb(" + c + "," + c + "," + c + ")";
-    }
     var r = Math.max(0, 255 + redSpeed - val * redSpeed).toString();
     var b = Math.min(255, - blueSpeed + val * blueSpeed).toString();
-    return "rgb(" + r + ",0," + b + ")";
+    var g = (255 - r - b);
+    return "rgb(" + r + "," + g + "," + b + ")";
 }
 function updateDrawArray() {
     var newArray = [];
@@ -77,7 +74,7 @@ function updateDrawArray() {
         {
             newColumn.push(getNewValue(i, j));
             var val = cellArray[i][j];
-            if (val > smallest) {
+            if (val > 0) {
                 ctx.fillStyle = getColor(val);
                 ctx.fillRect(i*multi, j*multi, multi, multi);
             }
