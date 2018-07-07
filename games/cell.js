@@ -4,13 +4,11 @@ var multi = 2;
 var deadBright = 48;
 var deadSteps = 6;
 var deadSpeed = deadBright / deadSteps;
-var redSpeed = 4;
-var blueSpeed = 2;
+var redSpeed = 5;
+var blueSpeed = 4;
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
-var aliveChance = 0.0625;
-var nextTime = 500;
-var time = nextTime;
+var nextTime;
 var born = [];
 var survives = [];
 var cellArray;
@@ -21,13 +19,20 @@ function clearCanvas() {
     ctx.fillRect(0, 0, size*multi, size*multi);
 }
 clearCanvas();
+function getInputValue(id) {
+    return document.getElementById(id).value;
+}
+function getAliveChance() {
+    return parseFloat(getInputValue('alive-chance-text'));
+}
+function getTime() {
+    return parseInt(getInputValue('time-text'));
+}
 function aliveChanceInput(newAliveChance) {
     // validation goes here
-    aliveChance = newAliveChance;
 }
-function timeInput(newNextTime) {
+function timeInput(newTime) {
     // validation goes here
-    nextTime = newNextTime;
 }
 function resetArray() {
     cellArray = new Array(size)
@@ -36,7 +41,7 @@ function resetArray() {
             return new Array(size)
                 .fill(0)
                 .map(function() {
-                    return Math.random() < (1 - aliveChance) ? 0 : 1;
+                    return Math.random() < (1 - getAliveChance()) ? 0 : 1;
                 });
         });
 }
@@ -89,17 +94,8 @@ function loop() {
     clearCanvas();
     updateDrawArray();
 }
-function toggleRunning() {
-    isRunning = !isRunning;
-    if (isRunning) {
-        interval = setInterval(loop, time);
-    }
-    else {
-        clearInterval(interval);
-    }
-}
 function setTime() {
-    time = nextTime;
+    nextTime = getTime();
     if (isRunning) {
         toggleRunning();
         toggleRunning();
@@ -125,5 +121,14 @@ function resetAutomata() {
     setRules();
     resetArray();
     loop();
+}
+function toggleRunning() {
+    isRunning = !isRunning;
+    if (isRunning) {
+        interval = setInterval(loop, nextTime);
+    }
+    else {
+        clearInterval(interval);
+    }
 }
 toggleRunning();
