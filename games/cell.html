@@ -8,6 +8,7 @@
     <meta name="description" content="Brett Kaplan's website">
     <meta name="author" content="Brett Kaplan">
     <link rel="stylesheet" type="text/css" href="/general-style.css">
+    <link rel="stylesheet" type="text/css" href="./cell.css">
     <title>Welcome, Weary Traveler!</title>
 </head>
 
@@ -68,12 +69,12 @@
                 <button type="button" onclick="setRules()">Set Automata Rules</button>
             </div>
             <div class="section">
-                <button type="button" onclick="setTime()">Set Update Time (ms)</button>
-                <input class="time-text" type="text" name="time" oninput="timeInput(this.value)" value="500" autocomplete="off"/>
+                <button id="time-button" type="button" onclick="setTime()">Set Update Time (ms)</button>
+                <input id="time-text" type="text" name="time" oninput="timeInput(this.value)" value="250" autocomplete="off"/>
             </div>
             <div class="section">
-                <button type="button" onclick="resetAutomata()">Reset Automata</button>
-                <input class="alive-chance-text" type="text" name="alive-chance" oninput="aliveChanceInput(this.value)" value="0.0625" autocomplete="off"/>
+                <button id="alive-chance-button" type="button" onclick="resetAutomata()">Reset Automata</button>
+                <input id="alive-chance-text" type="text" name="alive-chance" oninput="aliveChanceInput(this.value)" value="0.0625" autocomplete="off"/>
             </div>
             <div class="section">
                 <button type="button" onclick="toggleRunning()">Toggle Automata On/Off</button>

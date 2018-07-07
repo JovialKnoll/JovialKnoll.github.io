@@ -1,33 +1,36 @@
+// elements
+var aliveChanceButton = document.getElementById('alive-chance-button');
+var aliveChanceText = document.getElementById('alive-chance-text');
+var timeButton = document.getElementById('time-button');
+var timeText = document.getElementById('time-text');
+var canvas = document.getElementById('canvas');
 // state
 var size = 256;
 var multi = 2;
 var deadBright = 48;
 var deadSteps = 6;
-var smallest = deadSteps * -1;
 var deadSpeed = deadBright / deadSteps;
-var redSpeed = 4;
-var blueSpeed = 2;
-var canvas = document.getElementById('canvas');
+var redSpeed = 5;
+var blueSpeed = 4;
 var ctx = canvas.getContext('2d');
-var aliveChance = 0.0625;
-var nextTime = 500;
-var time = nextTime;
+ctx.fillStyle = 'black';
+ctx.fillRect(0, 0, size*multi, size*multi);
+var nextTime;
 var born = [];
 var survives = [];
 var cellArray;
 // make it work
-function clearCanvas() {
-    ctx.fillStyle = 'black';
-    ctx.fillRect(0, 0, size*multi, size*multi);
+function getAliveChance() {
+    return parseFloat(aliveChanceText.value);
 }
-clearCanvas();
+function getTime() {
+    return parseInt(timeText.value);
+}
 function aliveChanceInput(newAliveChance) {
     // validation goes here
-    aliveChance = newAliveChance;
 }
-function timeInput(newNextTime) {
+function timeInput(newTime) {
     // validation goes here
-    nextTime = newNextTime;
 }
 function resetArray() {
     cellArray = new Array(size)
@@ -36,7 +39,7 @@ function resetArray() {
             return new Array(size)
                 .fill(0)
                 .map(function() {
-                    return Math.random() < (1 - aliveChance) ? smallest : 1;
+                    return Math.random() < (1 - getAliveChance()) ? 0 : 1;
                 });
         });
 }
@@ -56,17 +59,14 @@ function getNewValue(i, j) {
     currentValue = cellArray[i][j];
     return currentValue > 0
         ? (survives.includes(neighbors) ? Math.min(1024, currentValue + 1) : 0)
-        : (born.includes(neighbors) ? 1 : Math.max(smallest, currentValue - 1))
+        : (born.includes(neighbors) ? 1 : 0)
         ;
 }
 function getColor(val) {
-    if (val < 1) {
-        var c = Math.max(0, deadBright + val * deadSpeed).toString();
-        return "rgb(" + c + "," + c + "," + c + ")";
-    }
     var r = Math.max(0, 255 + redSpeed - val * redSpeed).toString();
     var b = Math.min(255, - blueSpeed + val * blueSpeed).toString();
-    return "rgb(" + r + ",0," + b + ")";
+    var g = (255 - r - b);
+    return "rgb(" + r + "," + g + "," + b + ")";
 }
 function updateDrawArray() {
     var newArray = [];
@@ -77,7 +77,7 @@ function updateDrawArray() {
         {
             newColumn.push(getNewValue(i, j));
             var val = cellArray[i][j];
-            if (val > smallest) {
+            if (val > 0) {
                 ctx.fillStyle = getColor(val);
                 ctx.fillRect(i*multi, j*multi, multi, multi);
             }
@@ -89,20 +89,14 @@ function updateDrawArray() {
 // looping and input
 var isRunning = false;
 function loop() {
-    clearCanvas();
+    ctx.globalAlpha = 0.333;
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0, 0, size*multi, size*multi);
+    ctx.globalAlpha = 1.0;
     updateDrawArray();
 }
-function toggleRunning() {
-    isRunning = !isRunning;
-    if (isRunning) {
-        interval = setInterval(loop, time);
-    }
-    else {
-        clearInterval(interval);
-    }
-}
 function setTime() {
-    time = nextTime;
+    nextTime = getTime();
     if (isRunning) {
         toggleRunning();
         toggleRunning();
@@ -128,5 +122,14 @@ function resetAutomata() {
     setRules();
     resetArray();
     loop();
+}
+function toggleRunning() {
+    isRunning = !isRunning;
+    if (isRunning) {
+        interval = setInterval(loop, nextTime);
+    }
+    else {
+        clearInterval(interval);
+    }
 }
 toggleRunning();

@@ -1,4 +1,3 @@
-/*basic stuff*/
 body, input, button {
     font: 1.25em/1.5 sans-serif;
 }
@@ -25,8 +24,6 @@ button:enabled:hover {
 button:enabled:active {
     background-color: #E41339;
 }
-
-/*top navigation bar*/
 ul.topnav {
     font: 2em/2 sans-serif;
     margin: 0;
@@ -62,38 +59,6 @@ ul.topnav li.right {
         max-width: none;
     }
 }
-
-/*centered*/
-.four-oh-four, .numbers {
-    text-align: center;
-}
-
-/*cells*/
-.cells .inputs {
-    float: right;
-}
-.cells .inputs table th {
-    padding:0em 2.5em 0em 0em;
-}
-.cells .inputs table td {
-    padding:0em 2em 0.25em 0em;
-}
-.cells .inputs .section {
-    margin-bottom: 0.25em;
-}
-.cells .inputs .section .time-text{
-    width: 4em;
-}
-.cells .inputs .section .alive-chance-text{
-    width: 4em;
-}
-
-/*roller*/
-.numbers {
-    font: 15em/1.25 sans-serif;
-}
-
-/*print*/
 @media print {
     body {
         max-width: none;
