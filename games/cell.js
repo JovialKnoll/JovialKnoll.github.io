@@ -1,3 +1,9 @@
+// elements
+var aliveChanceButton = document.getElementById('alive-chance-button');
+var aliveChanceText = document.getElementById('alive-chance-text');
+var timeButton = document.getElementById('time-button');
+var timeText = document.getElementById('time-text');
+var canvas = document.getElementById('canvas');
 // state
 var size = 256;
 var multi = 2;
@@ -6,27 +12,19 @@ var deadSteps = 6;
 var deadSpeed = deadBright / deadSteps;
 var redSpeed = 5;
 var blueSpeed = 4;
-var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
+ctx.fillStyle = 'black';
+ctx.fillRect(0, 0, size*multi, size*multi);
 var nextTime;
 var born = [];
 var survives = [];
 var cellArray;
 // make it work
-function clearCanvas() {
-    // make this be transparent
-    ctx.fillStyle = 'black';
-    ctx.fillRect(0, 0, size*multi, size*multi);
-}
-clearCanvas();
-function getInputValue(id) {
-    return document.getElementById(id).value;
-}
 function getAliveChance() {
-    return parseFloat(getInputValue('alive-chance-text'));
+    return parseFloat(aliveChanceText.value);
 }
 function getTime() {
-    return parseInt(getInputValue('time-text'));
+    return parseInt(timeText.value);
 }
 function aliveChanceInput(newAliveChance) {
     // validation goes here
@@ -91,7 +89,10 @@ function updateDrawArray() {
 // looping and input
 var isRunning = false;
 function loop() {
-    clearCanvas();
+    ctx.globalAlpha = 0.333;
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0, 0, size*multi, size*multi);
+    ctx.globalAlpha = 1.0;
     updateDrawArray();
 }
 function setTime() {
