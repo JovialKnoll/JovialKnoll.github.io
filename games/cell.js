@@ -70,10 +70,10 @@ function getColor(val) {
 }
 function updateDrawArray() {
     var newArray = [];
-    for (var i = 0;i < size;++i)
+    for (var i = 0; i < size; ++i)
     {
         var newColumn = [];
-        for (var j = 0;j < size;++j)
+        for (var j = 0; j < size; ++j)
         {
             newColumn.push(getNewValue(i, j));
             var val = cellArray[i][j];
@@ -106,7 +106,7 @@ setTime();
 function setRules() {
     born = [];
     survives = [];
-    for (var n = 0;n < 9;++n) {
+    for (var n = 0; n < 9; ++n) {
         var bElement = document.getElementById('b' + n.toString());
         if (bElement.checked) {
             born.push(n);
