@@ -51,7 +51,7 @@ function rollDice() {
     results.insertBefore(resultElement, results.firstChild);
 }
 dice.addEventListener("keydown", function (e) {
-    if (e.code === "Enter") {
+    if (e.code === "Enter" && !rollButton.disabled) {
         rollDice();
     }
 });
