@@ -50,3 +50,8 @@ function rollDice() {
     resultElement.innerHTML = result;
     results.insertBefore(resultElement, results.firstChild);
 }
+dice.addEventListener("keydown", function (e) {
+    if (e.code === "Enter") {
+        rollDice();
+    }
+});
