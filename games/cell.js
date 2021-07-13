@@ -44,8 +44,11 @@ function resetArray() {
         });
 }
 resetArray();
+function getWrappedIndex(i) {
+    return (i + size) % size;
+}
 function getNeighbor(i, j) {
-    return cellArray[(i + size) % size][(j + size) % size] > 0 ? 1 : 0;
+    return cellArray[getWrappedIndex(i)][getWrappedIndex(j)] > 0 ? 1 : 0;
 }
 function getNewValue(i, j) {
     var neighbors = getNeighbor(i - 1, j - 1)
