@@ -26,12 +26,6 @@ function getAliveChance() {
 function getTime() {
     return parseInt(timeText.value);
 }
-function aliveChanceInput(newAliveChance) {
-    // validation goes here
-}
-function timeInput(newTime) {
-    // validation goes here
-}
 function resetArray() {
     cellArray = new Array(size)
         .fill(0)
@@ -39,27 +33,40 @@ function resetArray() {
             return new Array(size)
                 .fill(0)
                 .map(function() {
-                    return Math.random() < (1 - getAliveChance()) ? 0 : 1;
+                    return Math.random() < (1 - getAliveChance())
+                        ? 0
+                        : 1;
                 });
         });
 }
 resetArray();
+function getWrappedIndex(i) {
+    return (i + size) % size;
+}
 function getNeighbor(i, j) {
-    return cellArray[(i + size) % size][(j + size) % size] > 0 ? 1 : 0;
+    return cellArray[getWrappedIndex(i)][getWrappedIndex(j)] > 0 ? 1 : 0;
 }
 function getNewValue(i, j) {
-    var neighbors = getNeighbor(i - 1, j - 1)
-        + getNeighbor(i, j - 1)
-        + getNeighbor(i + 1, j - 1)
-        + getNeighbor(i - 1, j)
-        + getNeighbor(i + 1, j)
-        + getNeighbor(i - 1, j + 1)
-        + getNeighbor(i, j + 1)
-        + getNeighbor(i + 1, j + 1);
+    var adjacentAliveCount = 0;
+    for (var x = -1; x < 2; ++x) {
+        for (var y = -1; y < 2; ++y) {
+            adjacentAliveCount += getNeighbor(i + x, j + y);
+        }
+    }
+    selfAliveCount = getNeighbor(i, j);
+    adjacentAliveCount -= selfAliveCount;
     currentValue = cellArray[i][j];
-    return currentValue > 0
-        ? (survives.includes(neighbors) ? Math.min(1024, currentValue + 1) : 0)
-        : (born.includes(neighbors) ? 1 : 0)
+    return selfAliveCount
+        ? (
+            survives.includes(adjacentAliveCount)
+                ? Math.min(1024, currentValue + 1)
+                : 0
+        )
+        : (
+            born.includes(adjacentAliveCount)
+                ? 1
+                : 0
+        )
         ;
 }
 function getColor(val) {
