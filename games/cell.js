@@ -26,12 +26,6 @@ function getAliveChance() {
 function getTime() {
     return parseInt(timeText.value);
 }
-function aliveChanceInput(newAliveChance) {
-    // validation goes here
-}
-function timeInput(newTime) {
-    // validation goes here
-}
 function resetArray() {
     cellArray = new Array(size)
         .fill(0)
