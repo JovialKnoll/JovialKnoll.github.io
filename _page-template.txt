@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <script src="/links.js"></script>
+    <script src="/top-nav.js"></script>
 
 </body>
 </html>
