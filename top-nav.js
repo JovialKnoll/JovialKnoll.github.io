@@ -1,6 +1,7 @@
 var pages = [
     { pageLink: '/', pageText: "Home" },
     { pageLink: '/games', pageText: "Games" },
+    { pageLink: '/links', pageText: "Links" },
     { pageLink: '/about', pageText: "About" }
 ];
 var topNav = '<nav><ul class="topnav">';
