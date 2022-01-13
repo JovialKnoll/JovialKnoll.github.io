@@ -19,10 +19,10 @@
     <p>Type in a dice formula (e.g. 2d6 + d10 + 3 - d4) and click to roll.</p>
     <div>
         <label for="dice">Dice Formula:</label>
-        <input type="text" name="dice" oninput="diceInput(this.value)" id="dice">
-        <button type="button" onclick="rollDice()" disabled id="button">Roll 'em</button>
+        <input id="dice" name="dice" type="text" oninput="diceInput(this.value)">
+        <button id="button" type="button" onclick="rollDice()" disabled>Roll 'em</button>
     </div>
-    <div class="numbers" id="results">
+    <div id="results" class="numbers">
         <div id="end"></div>
     </div>
 </body>
