@@ -24,4 +24,5 @@ var head = '<meta charset="UTF-8">'
 	+ '<meta name="msapplication-TileColor" content="#FFFFFF">'
 	+ '<meta name="msapplication-TileImage" content="favicon/favicon-144.png">'
 	+ '<meta name="msapplication-config" content="favicon/browserconfig.xml">'
+    ;
 document.write(head);
