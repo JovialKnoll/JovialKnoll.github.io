@@ -1,3 +1,6 @@
 .monster .inputs {
     float: right;
 }
+.cells .inputs .input {
+    margin-bottom: 0.25em;
+}
