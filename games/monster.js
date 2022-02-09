@@ -11,7 +11,7 @@ const bodyGroups = [
     "C"
 ];
 var images = {};
-
+// setting up images
 for (var lvl = 0; lvl < 4; ++lvl) {
     var parts = bodyParts;
     if (lvl === 0) {
@@ -43,5 +43,6 @@ for (var lvl = 0; lvl < 4; ++lvl) {
         }
     }
 }
-
-console.log(images);
+function levelSelect(level) {
+    console.log(level);
+}
