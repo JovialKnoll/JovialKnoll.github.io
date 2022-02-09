@@ -1,3 +1,11 @@
+const smallSize = 48;
+const largeSize = 64;
+var canvasSize = 64;
+var canvas = document.getElementById('canvas');
+var ctx = canvas.getContext('2d');
+ctx.fillStyle = 'white';
+
+const levelSelect = document.getElementById('level');
 const bodySelects = [
     document.getElementById('tail'),
     document.getElementById('body'),
@@ -25,8 +33,8 @@ for (var lvl = 0; lvl < 4; ++lvl) {
         parts = bodyParts.slice(1, 4);
     }
     var size = lvl === 3
-        ? 64
-        : 48;
+        ? largeSize
+        : smallSize;
     for (var i = 0; i < parts.length; ++i) {
         var part = parts[i];
         for (var j = 0; j < bodyGroups.length; ++j) {
@@ -50,14 +58,17 @@ for (var lvl = 0; lvl < 4; ++lvl) {
         }
     }
 }
-function levelSelect(level) {
+function getLvl() {
+    return parseInt(levelSelect.options[levelSelect.selectedIndex].value);
+}
+function levelChange() {
     // empty out options
     for (var i = 0; i < bodySelects.length; ++i) {
         var bodySelect = bodySelects[i];
         bodySelect.length = 0;
         bodySelect.disabled = true;
     }
-    lvl = parseInt(level);
+    const lvl = getLvl();
     var selects = bodySelects;
     if (lvl === 0) {
         selects = bodySelects.slice(1, 4);
@@ -86,5 +97,26 @@ function levelSelect(level) {
         // pick a random option
         select.getElementsByTagName('option')[Math.floor(Math.random() * select.length)].selected = 'selected';
         select.disabled = false;
+    }
+    drawMonster();
+}
+function drawMonster() {
+    ctx.fillRect(0, 0, canvasSize, canvasSize);
+    const lvl = getLvl();
+    for (var i = 0; i < bodySelects.length; ++i) {
+        var bodySelect = bodySelects[i];
+        if (bodySelect.disabled) {
+            continue;
+        }
+        var part = bodyParts[i];
+        var imageKey = lvl.toString() + "-" + part + "-" + bodySelect.options[bodySelect.selectedIndex].value;
+        var image = images[imageKey];
+        var posX = 0;
+        var posY = 0;
+        if (lvl !== 3) {
+            posX = (canvasSize - smallSize) / 2;
+            posY = canvasSize - smallSize;
+        }
+        ctx.drawImage(image, posX, posY);
     }
 }
