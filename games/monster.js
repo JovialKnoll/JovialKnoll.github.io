@@ -83,6 +83,8 @@ function levelSelect(level) {
                 }
             }
         }
+        // pick a random option
+        select.getElementsByTagName('option')[Math.floor(Math.random() * select.length)].selected = 'selected';
         select.disabled = false;
     }
 }
