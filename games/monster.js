@@ -1,3 +1,10 @@
+const bodySelects = [
+    document.getElementById('tail'),
+    document.getElementById('body'),
+    document.getElementById('head'),
+    document.getElementById('legs'),
+    document.getElementById('arms')
+];
 const bodyParts = [
     "tail",
     "body",
@@ -44,5 +51,38 @@ for (var lvl = 0; lvl < 4; ++lvl) {
     }
 }
 function levelSelect(level) {
-    console.log(level);
+    // empty out options
+    for (var i = 0; i < bodySelects.length; ++i) {
+        var bodySelect = bodySelects[i];
+        bodySelect.length = 0;
+        bodySelect.disabled = true;
+    }
+    lvl = parseInt(level);
+    var selects = bodySelects;
+    if (lvl === 0) {
+        selects = bodySelects.slice(1, 4);
+    }
+    // fill in options
+    for (var i = 0; i < selects.length; ++i) {
+        var select = selects[i];
+        for (var j = 0; j < bodyGroups.length; ++j) {
+            var group = bodyGroups[j];
+            if (lvl === 0) {
+                var option = document.createElement('option');
+                option.value = group;
+                option.innerHTML = group;
+                select.appendChild(option);
+            }
+            else {
+                for (var k = 0; k < 3; ++k) {
+                    var val = group + k.toString();
+                    var option = document.createElement('option');
+                    option.value = val;
+                    option.innerHTML = val;
+                    select.appendChild(option);
+                }
+            }
+        }
+        select.disabled = false;
+    }
 }
