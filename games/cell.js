@@ -6,7 +6,6 @@ var timeText = document.getElementById('time-text');
 var canvas = document.getElementById('canvas');
 // state
 var size = 256;
-var multi = 2;
 var deadBright = 48;
 var deadSteps = 6;
 var deadSpeed = deadBright / deadSteps;
@@ -14,7 +13,7 @@ var redSpeed = 5;
 var blueSpeed = 4;
 var ctx = canvas.getContext('2d');
 ctx.fillStyle = 'black';
-ctx.fillRect(0, 0, size*multi, size*multi);
+ctx.fillRect(0, 0, size, size);
 var nextTime;
 var born = [];
 var survives = [];
@@ -86,7 +85,7 @@ function updateDrawArray() {
             var val = cellArray[i][j];
             if (val > 0) {
                 ctx.fillStyle = getColor(val);
-                ctx.fillRect(i*multi, j*multi, multi, multi);
+                ctx.fillRect(i, j, 1, 1);
             }
         }
         newArray.push(newColumn);
@@ -98,7 +97,7 @@ var isRunning = false;
 function loop() {
     ctx.globalAlpha = 0.333;
     ctx.fillStyle = 'black';
-    ctx.fillRect(0, 0, size*multi, size*multi);
+    ctx.fillRect(0, 0, size, size);
     ctx.globalAlpha = 1.0;
     updateDrawArray();
 }
