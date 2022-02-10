@@ -156,14 +156,12 @@ function drawMonster() {
     // replace color
     const skin = getSkin();
     const imageData = ctx.getImageData(0, 0, canvasSize, canvasSize);
-    // console.log(imageData);
     for (let i = 0; i < imageData.data.length; i += 4) {
         if (
             imageData.data[i] === baseTone[0][0]
             && imageData.data[i+1] === baseTone[0][1]
             && imageData.data[i+2] === baseTone[0][2]
         ) {
-            console.log("a");
             imageData.data[i] = skin[0][0];
             imageData.data[i+1] = skin[0][1];
             imageData.data[i+2] = skin[0][2];
@@ -172,16 +170,9 @@ function drawMonster() {
             && imageData.data[i+1] === baseTone[1][1]
             && imageData.data[i+2] === baseTone[1][2]
         ){
-            console.log("b");
             imageData.data[i] = skin[1][0];
             imageData.data[i+1] = skin[1][1];
             imageData.data[i+2] = skin[1][2];
-        } else if (
-            imageData.data[i] !== 255
-            && imageData.data[i+1] !== 255
-            && imageData.data[i+2] !== 255
-        ) {
-            console.log(imageData.data[i].toString() + ", " + imageData.data[i+1].toString() + ", " + imageData.data[i+2].toString());
         }
     }
     ctx.putImageData(imageData, 0, 0);
