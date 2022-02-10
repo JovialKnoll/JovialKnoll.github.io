@@ -4,7 +4,6 @@ const canvasSize = 64;
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 ctx.fillStyle = 'white';
-
 const levelSelect = document.getElementById('level');
 const bodySelects = [
     document.getElementById('tail'),
@@ -13,6 +12,7 @@ const bodySelects = [
     document.getElementById('legs'),
     document.getElementById('arms')
 ];
+const colorSelect = document.getElementById('color');
 const bodyParts = [
     "tail",
     "body",
@@ -24,6 +24,33 @@ const bodyGroups = [
     "A",
     "B",
     "C"
+];
+const baseTone = [[72, 79, 69], [123, 129, 121]];
+const d1 = [94, 71, 124];
+const d2 = [115, 72, 169];
+const d3 = [135, 72, 214];
+const d4 = [97, 51, 80];
+const d5 = [132, 27, 97];
+const d6 = [166, 4, 114];
+const d7 = [27, 79, 51];
+const d8 = [29, 102, 63];
+const d9 = [30, 125, 75];
+const d10 = [22, 55, 62];
+const d11 = [25, 78, 87];
+const d12 = [27, 100, 112];
+const skins = [
+    [baseTone, [d1, [116, 144, 148]], [d2, [110, 170, 177]], [d3, [105, 195, 205]]],
+    [baseTone, [d1, [132, 141, 163]], [d2, [141, 152, 208]], [d3, [150, 164, 250]]],
+    [baseTone, [d1, [159, 122, 158]], [d2, [197, 115, 196]], [d3, [233, 108, 233]]],
+    [baseTone, [d4, [162, 117, 125]], [d5, [201, 105, 130]], [d6, [240, 93, 134]]],
+    [baseTone, [d4, [158, 125, 81]], [d5, [194, 121, 40]], [d6, [229, 117, 0]]],
+    [baseTone, [d4, [161, 141, 81]], [d5, [199, 154, 41]], [d6, [237, 166, 1]]],
+    [baseTone, [d7, [157, 142, 68]], [d8, [186, 163, 35]], [d9, [215, 183, 3]]],
+    [baseTone, [d7, [143, 147, 113]], [d8, [164, 167, 105]], [d9, [184, 185, 97]]],
+    [baseTone, [d7, [132, 160, 86]], [d8, [148, 186, 83]], [d9, [163, 211, 80]]],
+    [baseTone, [d10, [95, 133, 110]], [d11, [109, 162, 131]], [d12, [122, 190, 152]]],
+    [baseTone, [d10, [85, 135, 147]], [d11, [71, 144, 157]], [d12, [57, 152, 167]]],
+    [baseTone, [d10, [117, 151, 149]], [d11, [111, 173, 177]], [d12, [105, 195, 205]]]
 ];
 const images = {};
 // setting up images
@@ -60,6 +87,10 @@ for (let lvl = 0; lvl < 4; ++lvl) {
 }
 function getLvl() {
     return parseInt(levelSelect.options[levelSelect.selectedIndex].value);
+}
+function getSkin() {
+    const lvl = getLvl();
+    return skins[colorSelect.selectedIndex][lvl];
 }
 function levelChange() {
     // empty out options
@@ -98,11 +129,14 @@ function levelChange() {
         select.getElementsByTagName('option')[Math.floor(Math.random() * select.length)].selected = 'selected';
         select.disabled = false;
     }
+    colorSelect.getElementsByTagName('option')[Math.floor(Math.random() * colorSelect.length)].selected = 'selected';
+    colorSelect.disabled = false;
     drawMonster();
 }
 function drawMonster() {
     ctx.fillRect(0, 0, canvasSize, canvasSize);
     const lvl = getLvl();
+    // draw body parts
     for (let i = 0; i < bodySelects.length; ++i) {
         const bodySelect = bodySelects[i];
         if (bodySelect.disabled) {
@@ -119,4 +153,36 @@ function drawMonster() {
         }
         ctx.drawImage(image, posX, posY);
     }
+    // replace color
+    const skin = getSkin();
+    const imageData = ctx.getImageData(0, 0, canvasSize, canvasSize);
+    // console.log(imageData);
+    for (let i = 0; i < imageData.data.length; i += 4) {
+        if (
+            imageData.data[i] === baseTone[0][0]
+            && imageData.data[i+1] === baseTone[0][1]
+            && imageData.data[i+2] === baseTone[0][2]
+        ) {
+            console.log("a");
+            imageData.data[i] = skin[0][0];
+            imageData.data[i+1] = skin[0][1];
+            imageData.data[i+2] = skin[0][2];
+        } else if (
+            imageData.data[i] === baseTone[1][0]
+            && imageData.data[i+1] === baseTone[1][1]
+            && imageData.data[i+2] === baseTone[1][2]
+        ){
+            console.log("b");
+            imageData.data[i] = skin[1][0];
+            imageData.data[i+1] = skin[1][1];
+            imageData.data[i+2] = skin[1][2];
+        } else if (
+            imageData.data[i] !== 255
+            && imageData.data[i+1] !== 255
+            && imageData.data[i+2] !== 255
+        ) {
+            console.log(imageData.data[i].toString() + ", " + imageData.data[i+1].toString() + ", " + imageData.data[i+2].toString());
+        }
+    }
+    ctx.putImageData(imageData, 0, 0);
 }
