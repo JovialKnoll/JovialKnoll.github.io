@@ -95,7 +95,6 @@ function getSkin() {
     return skins[colorSelect.selectedIndex][lvl];
 }
 function levelChange() {
-    // empty out options
     for (let i = 0; i < bodySelects.length; ++i) {
         const bodySelect = bodySelects[i];
         bodySelect.length = 0;
@@ -105,8 +104,16 @@ function levelChange() {
     let selects = bodySelects;
     if (lvl === 0) {
         selects = bodySelects.slice(1, 4);
+        colorSelect.length = 0;
+        colorSelect.disabled = true;
+    } else if (colorSelect.length === 0) {
+        for (let i = 0; i < skins.length; ++i) {
+            const option = document.createElement('option');
+            option.innerHTML = String.fromCharCode(65 + i);
+            colorSelect.appendChild(option);
+        }
+        colorSelect.disabled = false;
     }
-    // fill in options
     for (let i = 0; i < selects.length; ++i) {
         const select = selects[i];
         for (let j = 0; j < bodyGroups.length; ++j) {
@@ -129,15 +136,6 @@ function levelChange() {
         }
         select.disabled = false;
     }
-    if (colorSelect.length === 0) {
-        skins.length
-        for (let i = 0; i < skins.length; ++i) {
-            const option = document.createElement('option');
-            option.innerHTML = String.fromCharCode(65 + i);
-            colorSelect.appendChild(option);
-        }
-    }
-    colorSelect.disabled = false;
     randomizeButton.disabled = false;
     downloadButton.disabled = false;
     randomize();
@@ -153,7 +151,9 @@ function randomize() {
         }
         bodySelect.getElementsByTagName('option')[Math.floor(Math.random() * bodySelect.length)].selected = 'selected';
     }
-    colorSelect.getElementsByTagName('option')[Math.floor(Math.random() * colorSelect.length)].selected = 'selected';
+    if (!colorSelect.disabled) {
+        colorSelect.getElementsByTagName('option')[Math.floor(Math.random() * colorSelect.length)].selected = 'selected';
+    }
     drawMonster();
 }
 function drawMonster() {
@@ -177,28 +177,30 @@ function drawMonster() {
         ctx.drawImage(image, posX, posY);
     }
     // replace color
-    const skin = getSkin();
-    const imageData = ctx.getImageData(0, 0, canvasSize, canvasSize);
-    for (let i = 0; i < imageData.data.length; i += 4) {
-        if (
-            imageData.data[i] === baseTone[0][0]
-            && imageData.data[i+1] === baseTone[0][1]
-            && imageData.data[i+2] === baseTone[0][2]
-        ) {
-            imageData.data[i] = skin[0][0];
-            imageData.data[i+1] = skin[0][1];
-            imageData.data[i+2] = skin[0][2];
-        } else if (
-            imageData.data[i] === baseTone[1][0]
-            && imageData.data[i+1] === baseTone[1][1]
-            && imageData.data[i+2] === baseTone[1][2]
-        ){
-            imageData.data[i] = skin[1][0];
-            imageData.data[i+1] = skin[1][1];
-            imageData.data[i+2] = skin[1][2];
+    if (!colorSelect.disabled) {
+        const skin = getSkin();
+        const imageData = ctx.getImageData(0, 0, canvasSize, canvasSize);
+        for (let i = 0; i < imageData.data.length; i += 4) {
+            if (
+                imageData.data[i] === baseTone[0][0]
+                && imageData.data[i+1] === baseTone[0][1]
+                && imageData.data[i+2] === baseTone[0][2]
+            ) {
+                imageData.data[i] = skin[0][0];
+                imageData.data[i+1] = skin[0][1];
+                imageData.data[i+2] = skin[0][2];
+            } else if (
+                imageData.data[i] === baseTone[1][0]
+                && imageData.data[i+1] === baseTone[1][1]
+                && imageData.data[i+2] === baseTone[1][2]
+            ){
+                imageData.data[i] = skin[1][0];
+                imageData.data[i+1] = skin[1][1];
+                imageData.data[i+2] = skin[1][2];
+            }
         }
+        ctx.putImageData(imageData, 0, 0);
     }
-    ctx.putImageData(imageData, 0, 0);
 }
 function download() {
     const link = document.createElement('a');
