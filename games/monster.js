@@ -13,6 +13,7 @@ const bodySelects = [
     document.getElementById('arms')
 ];
 const colorSelect = document.getElementById('color');
+const randomizeButton = document.getElementById('randomize');
 const bodyParts = [
     "tail",
     "body",
@@ -127,7 +128,16 @@ function levelChange() {
         }
         select.disabled = false;
     }
+    if (colorSelect.length === 0) {
+        skins.length
+        for (let i = 0; i < skins.length; ++i) {
+            const option = document.createElement('option');
+            option.innerHTML = String.fromCharCode(65 + i);
+            colorSelect.appendChild(option);
+        }
+    }
     colorSelect.disabled = false;
+    randomizeButton.disabled = false;
     randomize();
 }
 function randomize() {
