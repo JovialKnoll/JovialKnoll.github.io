@@ -14,6 +14,7 @@ const bodySelects = [
 ];
 const colorSelect = document.getElementById('color');
 const randomizeButton = document.getElementById('randomize');
+const downloadButton = document.getElementById('download');
 const bodyParts = [
     "tail",
     "body",
@@ -138,6 +139,7 @@ function levelChange() {
     }
     colorSelect.disabled = false;
     randomizeButton.disabled = false;
+    downloadButton.disabled = false;
     randomize();
 }
 function randomize() {
@@ -197,4 +199,10 @@ function drawMonster() {
         }
     }
     ctx.putImageData(imageData, 0, 0);
+}
+function download() {
+    const link = document.createElement('a');
+    link.download = "monster.png";
+    link.href = canvas.toDataURL();
+    link.click();
 }
