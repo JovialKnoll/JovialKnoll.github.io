@@ -125,12 +125,23 @@ function levelChange() {
                 }
             }
         }
-        // pick a random option
-        select.getElementsByTagName('option')[Math.floor(Math.random() * select.length)].selected = 'selected';
         select.disabled = false;
     }
-    colorSelect.getElementsByTagName('option')[Math.floor(Math.random() * colorSelect.length)].selected = 'selected';
     colorSelect.disabled = false;
+    randomize();
+}
+function randomize() {
+    if (levelSelect.selectedIndex === 0) {
+        return;
+    }
+    for (let i = 0; i < bodySelects.length; ++i) {
+        const bodySelect = bodySelects[i];
+        if (bodySelect.disabled) {
+            continue;
+        }
+        bodySelect.getElementsByTagName('option')[Math.floor(Math.random() * bodySelect.length)].selected = 'selected';
+    }
+    colorSelect.getElementsByTagName('option')[Math.floor(Math.random() * colorSelect.length)].selected = 'selected';
     drawMonster();
 }
 function drawMonster() {
