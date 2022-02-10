@@ -1,12 +1,12 @@
-var pages = [
+const pages = [
     { pageLink: '/', pageText: "Home" },
     { pageLink: '/games', pageText: "Games" },
     { pageLink: '/links', pageText: "Links" },
     { pageLink: '/about', pageText: "About" }
 ];
-var topNav = '<nav><ul class="topnav">';
-for (var i = 0; i < pages.length; ++i) {
-    var page = pages[i];
+let topNav = '<nav><ul class="topnav">';
+for (let i = 0; i < pages.length; ++i) {
+    const page = pages[i];
     topNav += '<li';
     if (i === pages.length - 1) {
         topNav += ' class="right"';

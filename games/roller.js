@@ -1,11 +1,11 @@
-var dice = document.getElementById('dice');
-var rollButton = document.getElementById('button');
-var results = document.getElementById('results');
+const dice = document.getElementById('dice');
+const rollButton = document.getElementById('button');
+const results = document.getElementById('results');
 function diceInput(textIn) {
-    var cleanText = textIn
+    const cleanText = textIn
         .replace(/\s/g, '')
         .toLowerCase();
-    var valid = /^([-]?[0-9]*[d]?[0-9]+)([+-][0-9]*[d]?[0-9]+)*$/.test(cleanText);
+    const valid = /^([-]?[0-9]*[d]?[0-9]+)([+-][0-9]*[d]?[0-9]+)*$/.test(cleanText);
     rollButton.disabled = !valid;
 }
 function getRoll(size) {
@@ -15,14 +15,14 @@ function getRoll(size) {
         ;
 }
 function handlePart(part) {
-    var partResult = 0;
+    let partResult = 0;
     if (part.indexOf('d') > -1) {
-        var dieArray = part.split('d');
-        var rollsLeft = 1;
+        const dieArray = part.split('d');
+        let rollsLeft = 1;
         if (dieArray[0].length > 0) {
             rollsLeft = parseInt(dieArray[0]);
         }
-        var dieSize = parseInt(dieArray[1]);
+        const dieSize = parseInt(dieArray[1]);
         while (rollsLeft > 0) {
             partResult += getRoll(dieSize);
             --rollsLeft;
@@ -33,23 +33,23 @@ function handlePart(part) {
     return partResult;
 }
 function rollDice() {
-    var array = dice.value
+    const array = dice.value
         .replace(/\s/g, '')
         .toLowerCase()
         .split('+')
         .filter(function (input) {
             return input.length > 0;
         });
-    var result = 0;
-    for (var i = 0; i < array.length; ++i) {
-        var part = array[i];
-        var parts = part.split('-');
+    let result = 0;
+    for (let i = 0; i < array.length; ++i) {
+        const part = array[i];
+        const parts = part.split('-');
         result += handlePart(parts[0]);
-        for (var j = 1; j < parts.length; ++j) {
+        for (let j = 1; j < parts.length; ++j) {
             result -= handlePart(parts[j]);
         }
     }
-    var resultElement = document.createElement('div');
+    const resultElement = document.createElement('div');
     resultElement.innerHTML = result;
     results.insertBefore(resultElement, results.firstChild);
 }

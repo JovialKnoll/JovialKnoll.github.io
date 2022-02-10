@@ -1,6 +1,5 @@
-var dice = document.getElementById('dice');
-var checkButton = document.getElementById('button');
-var results = document.getElementById('results');
+const checkButton = document.getElementById('button');
+const results = document.getElementById('results');
 function fileInput() {
     checkButton.disabled = false;
 }
