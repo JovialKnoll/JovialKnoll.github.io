@@ -63,7 +63,7 @@ canvas {
 }
 @media screen and (max-width: 634px) {
     ul.topnav {
-        font: 1.5em/1.75;
+        font: 1.5em/1.75 sans-serif;
     }
     ul.topnav li, ul.topnav li.right {
         float: none;
