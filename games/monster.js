@@ -1,20 +1,6 @@
+// constant values
 const smallSize = 48;
-const largeSize = 64;
 const canvasSize = 64;
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
-ctx.fillStyle = 'white';
-const levelSelect = document.getElementById('level');
-const bodySelects = [
-    document.getElementById('tail'),
-    document.getElementById('body'),
-    document.getElementById('head'),
-    document.getElementById('legs'),
-    document.getElementById('arms')
-];
-const colorSelect = document.getElementById('color');
-const randomizeButton = document.getElementById('randomize');
-const downloadButton = document.getElementById('download');
 const bodyParts = [
     "tail",
     "body",
@@ -27,6 +13,38 @@ const bodyGroups = [
     "B",
     "C"
 ];
+const images = {};
+for (let lvl = 0; lvl < 4; ++lvl) {
+    let parts = bodyParts;
+    if (lvl === 0) {
+        parts = bodyParts.slice(1, 4);
+    }
+    const size = lvl === 3
+        ? canvasSize
+        : smallSize;
+    for (let i = 0; i < parts.length; ++i) {
+        const part = parts[i];
+        for (let j = 0; j < bodyGroups.length; ++j) {
+            const group = bodyGroups[j];
+            const fileStart = lvl.toString() + "-" + part + "-" + group;
+            if (lvl === 0) {
+                const file = fileStart + ".png";
+                const image = new Image(size, size);
+                image.src = "./images/" + file;
+                images[fileStart] = image;
+            }
+            else {
+                for (let k = 0; k < 3; ++k) {
+                    const fileKey = fileStart + k.toString();
+                    const file = fileKey + ".png";
+                    const image = new Image(size, size);
+                    image.src = "./images/" + file;
+                    images[fileKey] = image;
+                }
+            }
+        }
+    }
+}
 const baseTone = [[72, 79, 69], [123, 129, 121]];
 const d1 = [94, 71, 124];
 const d2 = [115, 72, 169];
@@ -54,39 +72,23 @@ const skins = [
     [baseTone, [d10, [85, 135, 147]], [d11, [71, 144, 157]], [d12, [57, 152, 167]]],
     [baseTone, [d10, [117, 151, 149]], [d11, [111, 173, 177]], [d12, [105, 195, 205]]]
 ];
-const images = {};
-// setting up images
-for (let lvl = 0; lvl < 4; ++lvl) {
-    let parts = bodyParts;
-    if (lvl === 0) {
-        parts = bodyParts.slice(1, 4);
-    }
-    const size = lvl === 3
-        ? largeSize
-        : smallSize;
-    for (let i = 0; i < parts.length; ++i) {
-        const part = parts[i];
-        for (let j = 0; j < bodyGroups.length; ++j) {
-            const group = bodyGroups[j];
-            const fileStart = lvl.toString() + "-" + part + "-" + group;
-            if (lvl === 0) {
-                const file = fileStart + ".png";
-                const image = new Image(size, size);
-                image.src = "./images/" + file;
-                images[fileStart] = image;
-            }
-            else {
-                for (let k = 0; k < 3; ++k) {
-                    const fileKey = fileStart + k.toString();
-                    const file = fileKey + ".png";
-                    const image = new Image(size, size);
-                    image.src = "./images/" + file;
-                    images[fileKey] = image;
-                }
-            }
-        }
-    }
+// page elements
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+ctx.fillStyle = 'white';
+const levelSelect = document.getElementById('level');
+const bodySelects = [];
+for (let i = 0; i < bodyParts.length; ++i) {
+    bodySelects.push(
+        document.getElementById(
+            bodyParts[i]
+        )
+    );
 }
+const colorSelect = document.getElementById('color');
+const randomizeButton = document.getElementById('randomize');
+const downloadButton = document.getElementById('download');
+// functions - get values
 function getLvl() {
     return parseInt(levelSelect.options[levelSelect.selectedIndex].value);
 }
@@ -94,6 +96,7 @@ function getSkin() {
     const lvl = getLvl();
     return skins[colorSelect.selectedIndex][lvl];
 }
+// functions - do things
 function levelChange() {
     for (let i = 0; i < bodySelects.length; ++i) {
         const bodySelect = bodySelects[i];
