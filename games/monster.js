@@ -211,8 +211,16 @@ function drawMonster() {
 }
 function download() {
     const scale = getScale();
+    const scaleCanvasSize = canvasSize * scale;
+    const scaleCanvas = document.createElement('canvas');
+    canvas.width = scaleCanvasSize;
+    canvas.height = scaleCanvasSize;
+    const scaleCtx = scaleCanvas.getContext('2d');
+    
+    
+    
     const link = document.createElement('a');
     link.download = "monster.png";
-    link.href = canvas.toDataURL();
+    link.href = scaleCtx.toDataURL();
     link.click();
 }
