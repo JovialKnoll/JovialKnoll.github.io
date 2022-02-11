@@ -51,6 +51,16 @@ ul.topnav li a.active, ul.topnav li a:hover:active {
 ul.topnav li.right {
     float: right;
 }
+canvas {
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+}
 @media screen and (max-width: 600px) {
     ul.topnav li.right, ul.topnav li {
         float: none;
