@@ -61,8 +61,11 @@ canvas {
     image-rendering: crisp-edges;
     image-rendering: pixelated;
 }
-@media screen and (max-width: 600px) {
-    ul.topnav li.right, ul.topnav li {
+@media screen and (max-width: 634px) {
+    ul.topnav {
+        font: 1.5em/1.75 sans-serif;
+    }
+    ul.topnav li, ul.topnav li.right {
         float: none;
     }
     body {
