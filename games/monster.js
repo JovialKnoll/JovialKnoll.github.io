@@ -88,7 +88,7 @@ for (let i = 0; i < bodyParts.length; ++i) {
 const colorSelect = document.getElementById('color');
 const randomizeButton = document.getElementById('randomize');
 const downloadButton = document.getElementById('download');
-// functions
+// functions - get values
 function getLvl() {
     return parseInt(levelSelect.options[levelSelect.selectedIndex].value);
 }
@@ -96,6 +96,7 @@ function getSkin() {
     const lvl = getLvl();
     return skins[colorSelect.selectedIndex][lvl];
 }
+// functions - do things
 function levelChange() {
     for (let i = 0; i < bodySelects.length; ++i) {
         const bodySelect = bodySelects[i];
