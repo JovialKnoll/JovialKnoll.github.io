@@ -88,6 +88,7 @@ for (let i = 0; i < bodyParts.length; ++i) {
 const colorSelect = document.getElementById('color');
 const randomizeButton = document.getElementById('randomize');
 const downloadButton = document.getElementById('download');
+const scaleSelect = document.getElementById('scale');
 // functions - get values
 function getLvl() {
     return parseInt(levelSelect.options[levelSelect.selectedIndex].value);
@@ -95,6 +96,9 @@ function getLvl() {
 function getSkin() {
     const lvl = getLvl();
     return skins[colorSelect.selectedIndex][lvl];
+}
+function getScale() {
+    return parseInt(scaleSelect.options[scaleSelect.selectedIndex].value);
 }
 // functions - do things
 function levelChange() {
@@ -206,8 +210,25 @@ function drawMonster() {
     }
 }
 function download() {
+    const scale = getScale();
+    const scaleCanvasSize = canvasSize * scale;
+    const scaleCanvas = document.createElement('canvas');
+    scaleCanvas.width = scaleCanvasSize;
+    scaleCanvas.height = scaleCanvasSize;
+    const scaleCtx = scaleCanvas.getContext('2d');
+    const imageData = ctx.getImageData(0, 0, canvasSize, canvasSize);
+    for (let x = 0; x < canvasSize; ++x) {
+        for (let y = 0; y < canvasSize; ++y) {
+            const i = (y * canvasSize + x) * 4;
+            const r = imageData.data[i];
+            const g = imageData.data[i+1];
+            const b = imageData.data[i+2];
+            scaleCtx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
+            scaleCtx.fillRect(x * scale, y * scale, scale, scale);
+        }
+    }
     const link = document.createElement('a');
     link.download = "monster.png";
-    link.href = canvas.toDataURL();
+    link.href = scaleCanvas.toDataURL();
     link.click();
 }
