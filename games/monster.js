@@ -213,14 +213,22 @@ function download() {
     const scale = getScale();
     const scaleCanvasSize = canvasSize * scale;
     const scaleCanvas = document.createElement('canvas');
-    canvas.width = scaleCanvasSize;
-    canvas.height = scaleCanvasSize;
+    scaleCanvas.width = scaleCanvasSize;
+    scaleCanvas.height = scaleCanvasSize;
     const scaleCtx = scaleCanvas.getContext('2d');
-    
-    
-    
+    const imageData = ctx.getImageData(0, 0, canvasSize, canvasSize);
+    for (let x = 0; x < canvasSize; ++x) {
+        for (let y = 0; y < canvasSize; ++y) {
+            const i = (y * canvasSize + x) * 4;
+            const r = imageData.data[i];
+            const g = imageData.data[i+1];
+            const b = imageData.data[i+2];
+            scaleCtx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
+            scaleCtx.fillRect(x * scale, y * scale, scale, scale);
+        }
+    }
     const link = document.createElement('a');
     link.download = "monster.png";
-    link.href = scaleCtx.toDataURL();
+    link.href = scaleCanvas.toDataURL();
     link.click();
 }
