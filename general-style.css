@@ -68,6 +68,14 @@ canvas {
     ul.topnav li, ul.topnav li.right {
         float: none;
     }
+    ul.topnav {
+        -moz-column-count: 2;
+        -moz-column-gap: 0px;
+        -webkit-column-count: 2;
+        -webkit-column-gap: 0px;
+        column-count: 2;
+        column-gap: 0px;
+    }
     body {
         max-width: none;
     }
