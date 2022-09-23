@@ -50,12 +50,12 @@ function getNewValue(i, j) {
     currentValue = cellArray[i][j];
     return selfAliveCount
         ? (
-            survives.includes(adjacentAliveCount)
+            survives[adjacentAliveCount]
                 ? Math.min(1024, currentValue + 1)
                 : 0
         )
         : (
-            born.includes(adjacentAliveCount)
+            born[adjacentAliveCount]
                 ? 1
                 : 0
         )
@@ -107,13 +107,9 @@ function setRules() {
     survives = [];
     for (let n = 0; n < 9; ++n) {
         const bElement = document.getElementById('b' + n.toString());
-        if (bElement.checked) {
-            born.push(n);
-        }
+        born.push(bElement.checked);
         const sElement = document.getElementById('s' + n.toString());
-        if (sElement.checked) {
-            survives.push(n);
-        }
+        survives.push(sElement.checked);
     }
 }
 setRules();
