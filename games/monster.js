@@ -6,12 +6,12 @@ const bodyParts = [
     "body",
     "head",
     "legs",
-    "arms"
+    "arms",
 ];
 const bodyGroups = [
     "A",
     "B",
-    "C"
+    "C",
 ];
 const images = {};
 for (let lvl = 0; lvl < 4; ++lvl) {
@@ -70,7 +70,7 @@ const skins = [
     [baseTone, [d7, [132, 160, 86]], [d8, [148, 186, 83]], [d9, [163, 211, 80]]],
     [baseTone, [d10, [95, 133, 110]], [d11, [109, 162, 131]], [d12, [122, 190, 152]]],
     [baseTone, [d10, [85, 135, 147]], [d11, [71, 144, 157]], [d12, [57, 152, 167]]],
-    [baseTone, [d10, [117, 151, 149]], [d11, [111, 173, 177]], [d12, [105, 195, 205]]]
+    [baseTone, [d10, [117, 151, 149]], [d11, [111, 173, 177]], [d12, [105, 195, 205]]],
 ];
 // page elements
 const canvas = document.getElementById('canvas');

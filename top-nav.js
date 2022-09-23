@@ -2,7 +2,7 @@ const pages = [
     { pageLink: '/', pageText: "Home" },
     { pageLink: '/games', pageText: "Games" },
     { pageLink: '/links', pageText: "Links" },
-    { pageLink: '/about', pageText: "About" }
+    { pageLink: '/about', pageText: "About" },
 ];
 let topNav = '<nav><ul class="topnav">';
 for (let i = 0; i < pages.length; ++i) {
