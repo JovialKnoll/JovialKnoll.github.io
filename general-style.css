@@ -61,7 +61,7 @@ canvas {
     image-rendering: crisp-edges;
     image-rendering: pixelated;
 }
-@media screen and (max-width: 634px) {
+@media screen and (max-width: 719px) {
     ul.topnav {
         font: 1.5em/1.75 sans-serif;
     }
