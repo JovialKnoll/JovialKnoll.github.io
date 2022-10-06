@@ -9,21 +9,6 @@ body {
 h1, h2, h3 {
     line-height: 1.5;
 }
-button {
-    background-color: black;
-    color: white;
-    border: none;
-    text-decoration: none;
-}
-button:disabled {
-    background-color: silver;
-}
-button:enabled:hover {
-    background-color: darkred;
-}
-button:enabled:active {
-    background-color: #E41339;
-}
 ul.topnav {
     font: 2em/2 sans-serif;
     margin: 0;
@@ -46,10 +31,25 @@ ul.topnav li a {
     color: white;
     text-decoration: none;
 }
+button {
+    background-color: black;
+    color: white;
+    border: none;
+    text-decoration: none;
+}
+button:disabled {
+    background-color: silver;
+}
 ul.topnav li a:hover:not(.active) {
     background-color: darkred;
 }
+button:enabled:hover {
+    background-color: darkred;
+}
 ul.topnav li a.active, ul.topnav li a:hover:active {
+    background-color: #E41339;
+}
+button:enabled:active {
     background-color: #E41339;
 }
 canvas {
