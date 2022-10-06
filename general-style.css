@@ -76,11 +76,8 @@ canvas {
         column-count: 2;
         column-gap: 0px;
     }
-    body {
-        max-width: none;
-    }
 }
-@media print {
+@media screen and (max-width: 719px), @media print {
     body {
         max-width: none;
     }
