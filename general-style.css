@@ -33,7 +33,6 @@ ul.topnav {
     overflow: hidden;
     background-color: black;
     color: white;
-    text-decoration: none;
 }
 ul.topnav li {
     float: left;
@@ -41,6 +40,7 @@ ul.topnav li {
 ul.topnav li a {
     padding: 0em 0.5em;
     display: block;
+    text-decoration: none;
 }
 ul.topnav li a:hover:not(.active) {
     background-color: darkred;
