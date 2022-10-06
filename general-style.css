@@ -9,21 +9,6 @@ body {
 h1, h2, h3 {
     line-height: 1.5;
 }
-button {
-    background-color: black;
-    color: white;
-    border: none;
-    text-decoration: none;
-}
-button:disabled {
-    background-color: silver;
-}
-button:enabled:hover {
-    background-color: darkred;
-}
-button:enabled:active {
-    background-color: #E41339;
-}
 ul.topnav {
     font: 2em/2 sans-serif;
     margin: 0;
@@ -36,20 +21,29 @@ ul.topnav {
 ul.topnav li {
     float: left;
 }
+ul.topnav li.right {
+    float: right;
+}
 ul.topnav li a {
     padding: 0em 0.5em;
     display: block;
+}
+button {
+    background-color: black;
+    border: none;
+}
+ul.topnav li a, button {
     color: white;
     text-decoration: none;
 }
-ul.topnav li a:hover:not(.active) {
+button:disabled {
+    background-color: silver;
+}
+ul.topnav li a:hover:not(.active), button:enabled:hover {
     background-color: darkred;
 }
-ul.topnav li a.active, ul.topnav li a:hover:active {
+ul.topnav li a.active, ul.topnav li a:hover:active, button:enabled:active {
     background-color: #E41339;
-}
-ul.topnav li.right {
-    float: right;
 }
 canvas {
     image-rendering: optimizeSpeed;
@@ -64,11 +58,6 @@ canvas {
 @media screen and (max-width: 719px) {
     ul.topnav {
         font: 1.5em/1.75 sans-serif;
-    }
-    ul.topnav li, ul.topnav li.right {
-        float: none;
-    }
-    ul.topnav {
         -moz-column-count: 2;
         -moz-column-gap: 0px;
         -webkit-column-count: 2;
@@ -76,11 +65,11 @@ canvas {
         column-count: 2;
         column-gap: 0px;
     }
-    body {
-        max-width: none;
+    ul.topnav li, ul.topnav li.right {
+        float: none;
     }
 }
-@media print {
+@media screen and (max-width: 719px), @media print {
     body {
         max-width: none;
     }
