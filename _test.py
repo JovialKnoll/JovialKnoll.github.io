@@ -3,6 +3,7 @@
 import os
 import shutil
 import fnmatch
+import webbrowser
 import sys
 
 _location = '.'
@@ -11,6 +12,7 @@ if __file__:
 SRC_DIR = os.path.dirname(_location)
 BUILD_DIR = os.path.join(SRC_DIR, 'build')
 TOPNAV_FILE = os.path.join(BUILD_DIR, 'top-nav.js')
+INDEX_FILE = os.path.join(BUILD_DIR, 'index.html')
 
 def main():
     if os.path.exists(BUILD_DIR):
@@ -31,6 +33,7 @@ def main():
     text = text.replace("', pageText:", ".html', pageText:")
     with open(TOPNAV_FILE, 'w') as f:
         f.write(text)
+    webbrowser.open('file:///' + INDEX_FILE)
 
 if __name__ == '__main__':
     main()
