@@ -23,6 +23,6 @@ const head = '<meta charset="UTF-8">'
     + '<link rel="apple-touch-icon" sizes="180x180" href="/favicon/favicon-180.png">'
     + '<meta name="msapplication-TileColor" content="#FFFFFF">'
     + '<meta name="msapplication-TileImage" content="/favicon/favicon-144.png">'
-    + '<meta name="msapplication-config" content="/favicon/browserconfig.xml">'
+    + '<meta name="msapplication-config" content="/browserconfig.xml">'
     ;
 document.write(head);
