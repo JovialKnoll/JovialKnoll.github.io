@@ -10,6 +10,7 @@ if __file__:
     _location = __file__
 SRC_DIR = os.path.dirname(_location)
 BUILD_DIR = os.path.join(SRC_DIR, 'build')
+TOPNAV_FILE = os.path.join(BUILD_DIR, 'top-nav.js')
 
 def main():
     if os.path.exists(BUILD_DIR):
@@ -23,6 +24,13 @@ def main():
             text = text.replace('="/', '="./')
             with open(filepath, 'w') as f:
                 f.write(text)
+    with open(TOPNAV_FILE, 'r') as f:
+        text = f.read()
+    text = text.replace("pageLink: '/'", "pageLink: '/index'")
+    text = text.replace("pageLink: '/", "pageLink: './")
+    text = text.replace("', pageText:", ".html', pageText:")
+    with open(TOPNAV_FILE, 'w') as f:
+        f.write(text)
 
 if __name__ == '__main__':
     main()
