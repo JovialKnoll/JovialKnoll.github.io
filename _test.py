@@ -3,6 +3,7 @@
 import os
 import shutil
 import fnmatch
+import re
 import webbrowser
 import sys
 
@@ -24,6 +25,7 @@ def main():
             with open(filepath, 'r') as f:
                 text = f.read()
             text = text.replace('="/', '="./')
+            text = re.sub(r'a href="./(.+)"', r'a href="./\1.html"', text)
             with open(filepath, 'w') as f:
                 f.write(text)
     with open(TOPNAV_FILE, 'r') as f:
