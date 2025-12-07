@@ -24,12 +24,9 @@ def main():
             filepath = os.path.join(dirpath, filename)
             with open(filepath, 'r') as f:
                 text = f.read()
-            text = text.replace('="/', '="./')
-            if dirpath != BUILD_DIR:
-                text = text.replace('src="./head.js"', 'src="../head.js"')
-                text = text.replace('src="./top-nav.js"', 'src="../top-nav.js"')
-                text = text.replace('href="./general-style.css"', 'href="../general-style.css"')
-            text = re.sub(r'a href="./(.+)"', r'a href="./\1.html"', text)
+            text = text.replace('="/', '="file:///' + BUILD_DIR + '/')
+            text = text.replace('="./', '="file:///' + dirpath + '/')
+            text = re.sub(r'a href="file(.+)"', r'a href="file\1.html"', text)
             with open(filepath, 'w') as f:
                 f.write(text)
     with open(TOPNAV_FILE, 'r') as f:
