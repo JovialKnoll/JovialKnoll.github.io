@@ -1,0 +1,76 @@
+body, input, button {
+    font: 1.25em/1.5 sans-serif;
+}
+body {
+    margin: 2em auto;
+    padding: 0 1em;
+    max-width: 50em;
+}
+h1, h2, h3 {
+    line-height: 1.5;
+}
+ul.topnav {
+    font: 2em/2 sans-serif;
+    margin: 0;
+    padding: 0;
+    max-width: none;
+    list-style-type: none;
+    overflow: hidden;
+    background-color: black;
+}
+ul.topnav li {
+    float: left;
+}
+ul.topnav li.right {
+    float: right;
+}
+ul.topnav li a {
+    padding: 0em 0.5em;
+    display: block;
+}
+button {
+    background-color: black;
+    border: none;
+}
+ul.topnav li a, button {
+    color: white;
+    text-decoration: none;
+}
+button:disabled {
+    background-color: silver;
+}
+ul.topnav li a:hover:not(.active), button:enabled:hover {
+    background-color: darkred;
+}
+ul.topnav li a.active, ul.topnav li a:hover:active, button:enabled:active {
+    background-color: #E41339;
+}
+canvas {
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+}
+@media screen and (max-width: 719px) {
+    ul.topnav {
+        font: 1.5em/1.75 sans-serif;
+        -moz-column-count: 2;
+        -moz-column-gap: 0px;
+        -webkit-column-count: 2;
+        -webkit-column-gap: 0px;
+        column-count: 2;
+        column-gap: 0px;
+    }
+    ul.topnav li, ul.topnav li.right {
+        float: none;
+    }
+}
+@media screen and (max-width: 719px), @media print {
+    body {
+        max-width: none;
+    }
+}

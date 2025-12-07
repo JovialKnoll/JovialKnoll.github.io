@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="./art.js" defer></script>
+    <script src="/head.js"></script>
+    <link rel="stylesheet" type="text/css" href="./art.css">
+    <title>Welcome, Weary Traveler!</title>
+</head>
+
+<body>
+    <script src="/top-nav.js"></script>
+
+    <h1>Is It Art?</h1>
+    <p>Do you want a definitive verdict on the art-ness of some work?
+    <br>I've developed an unbiased AI system that will tell you whether or not something is art.
+    <br>Simply upload a file (works with all file types) and click for judgement.</p>
+    <div>
+        <label for="upload">Possible Art:</label>
+        <input id="upload" name="upload" type="file" onchange="fileInput()">
+        <button id="button" type="button" onclick="checkArt()" disabled>Is It Art?</button>
+    </div>
+    <div id="results" class="verdict">
+        <div id="end"></div>
+    </div>
+</body>
+</html>

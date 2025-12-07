@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="./roller.js" defer></script>
+    <script src="/head.js"></script>
+    <link rel="stylesheet" type="text/css" href="./roller.css">
+    <title>Welcome, Weary Traveler!</title>
+</head>
+
+<body>
+    <script src="/top-nav.js"></script>
+
+    <h1>Rollin'</h1>
+    <p>Type in a dice formula (e.g. 2d6 + d10 + 3 - d4) and click to roll.</p>
+    <div>
+        <label for="dice">Dice Formula:</label>
+        <input id="dice" name="dice" type="text" oninput="diceInput(this.value)">
+        <button id="button" type="button" onclick="rollDice()" disabled>Roll 'em</button>
+    </div>
+    <div id="results" class="numbers">
+        <div id="end"></div>
+    </div>
+</body>
+</html>
