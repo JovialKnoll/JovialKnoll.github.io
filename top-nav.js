@@ -1,8 +1,8 @@
 const pages = [
-    { pageLink: '/', pageText: "Home" },
-    { pageLink: '/games', pageText: "Games" },
-    { pageLink: '/links', pageText: "Links" },
-    { pageLink: '/about', pageText: "About" },
+    { pageLink: "/", pageText: "Home" },
+    { pageLink: "/games", pageText: "Games" },
+    { pageLink: "/links", pageText: "Links" },
+    { pageLink: "/about", pageText: "About" },
 ];
 let topNav = '<nav><ul class="topnav">';
 for (let i = 0; i < pages.length; ++i) {
@@ -12,7 +12,7 @@ for (let i = 0; i < pages.length; ++i) {
         topNav += ' class="right"';
     }
     topNav += '><a href="';
-    topNav += page.pageLink === window.location.pathname.replace('.html', '') && window.location.pathname !== '/.html'
+    topNav += page.pageLink === window.location.pathname.replace('.html', '') && window.location.pathname !== "/.html"
         ? '#" class="active'
         : page.pageLink
         ;
